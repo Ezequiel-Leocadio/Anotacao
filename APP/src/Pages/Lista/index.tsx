@@ -8,6 +8,7 @@ import {
   storeData,
 } from '../../services/data';
 import ListCheckbox from '../../components/ListCheckBox';
+import Load from '../../components/load';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
   ScrollItens,
@@ -19,6 +20,7 @@ import {
 
 const App = ({ navigation, route }) => {
   const refScroll = useRef();
+  const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
   const [textAdd, setTextAdd] = useState('');
 
@@ -44,6 +46,8 @@ const App = ({ navigation, route }) => {
   }, []);
 
   async function handleDelete(e, idEdit) {
+    setLoading(true);
+
     const itensGet: any = await getData({ tipo: 'itens' });
     const index = itensGet.findIndex((f) => f.id === id);
     if (index >= 0) {
@@ -59,27 +63,34 @@ const App = ({ navigation, route }) => {
     }
 
     await storeData({ tipo: 'itens', value: JSON.stringify(itensGet) });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 5);
   }
 
   async function handleEditMarcado(e, idEdit) {
+    setLoading(true);
+    const i = list;
+
     const itensGet: any = await getData({ tipo: 'itens' });
     const index = itensGet.findIndex((f) => f.id === id);
 
     if (index >= 0) {
-      const i = list;
       const indexEdit = i.findIndex((f) => f.id === idEdit);
 
       if (indexEdit >= 0) {
-        i[indexEdit].marcado = !list[indexEdit].marcado;
+        i[indexEdit].marcado = !i[indexEdit].marcado;
         itensGet[index].list = i;
         itensGet[index].edit = true;
-
-        console.log(i);
         setList(i);
       }
     }
 
     await storeData({ tipo: 'itens', value: JSON.stringify(itensGet) });
+    setTimeout(() => {
+      setLoading(false);
+    }, 5);
   }
 
   async function handleAdd({ descricao, posicao, idEdit }) {
@@ -169,7 +180,7 @@ const App = ({ navigation, route }) => {
   return (
     <Container>
       <ScrollItens ref={refScroll}>
-        {/* <Load loading={loading} /> */}
+        <Load loading={loading} />
         <TextInput placeholder="Titulo" value={title} onChangeText={setTitle} />
 
         <ListCheckbox

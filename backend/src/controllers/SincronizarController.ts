@@ -76,7 +76,7 @@ class SincronizarController {
       list: list.filter((f) => f.id_nota === e.id),
     }));
 
-    console.log(data);
+    // console.log(data);
 
     return res.json({
       success: true,

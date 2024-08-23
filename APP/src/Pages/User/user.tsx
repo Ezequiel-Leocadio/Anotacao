@@ -1,18 +1,19 @@
-import { Text, View } from 'react-native';
 import { Container, Form, Separator, Title } from './styles';
 import { useEffect, useRef, useState } from 'react';
-import { getDataUser, handleItensEdit, storeData } from '../../services/data';
+import { getDataUser, storeData } from '../../services/data';
 import Button from '../../components/button';
 import { requestApi } from '../../services/api';
 import Load from '../../components/load';
 import FormInput from '../../components/Input';
 
-function User({ navigation, route }) {
+function User({ navigation }) {
+  const passwordRef: any = useRef(null);
+  const oldPasswordRef: any = useRef(null);
+  const confirmPasswordRef: any = useRef(null);
+  const loginRef: any = useRef(null);
+
   const [user, serUser] = useState<any>({ user: { nome: '' } });
-  const passwordRef = useRef();
-  const oldPasswordRef = useRef();
-  const confirmPasswordRef = useRef();
-  const loginRef = useRef();
+
   const [loading, setLoading] = useState(false);
 
   const [login, setLogin] = useState('');

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import jwtDecode from 'jwt-decode';
+
 export const storeData = async ({ value, tipo }) => {
   try {
     await AsyncStorage.setItem('@nota_storage_Key_' + tipo, value);
@@ -13,6 +14,18 @@ export const getDataUser = async () => {
     const value = await AsyncStorage.getItem('@nota_storage_Key_user');
     if (value !== null) {
       return JSON.parse(value);
+    }
+    return false;
+  } catch (e) {
+    return false;
+  }
+};
+
+export const getDataUrl = async () => {
+  try {
+    const value = await AsyncStorage.getItem('@nota_storage_Key_url');
+    if (value !== null) {
+      return value;
     }
     return false;
   } catch (e) {

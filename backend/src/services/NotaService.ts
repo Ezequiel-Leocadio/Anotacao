@@ -1,4 +1,4 @@
-import { getCustomRepository, Like } from "typeorm";
+import { getCustomRepository, Like, Not } from "typeorm";
 import { NotasRepositories } from "../repositories/NotasRepositories";
 
 interface INotaRequest {
@@ -91,6 +91,9 @@ class NotaService {
     const repositories = getCustomRepository(NotasRepositories);
 
     const list = await repositories.find({
+      where: {
+        tipo: Not("excluido"),
+      },
       order: {
         title: "ASC",
       },

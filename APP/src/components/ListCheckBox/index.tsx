@@ -9,8 +9,13 @@ const ListCheckbox = ({ itens, itens2, handleEditMarcado, handleDelete }) => {
 
   useEffect(() => {
     setList(itens);
+    console.log(itens);
+  }, [itens]);
+
+  useEffect(() => {
     setList2(itens2);
-  }, [itens, itens2]);
+    console.log(itens2);
+  }, [itens2]);
 
   return (
     <>

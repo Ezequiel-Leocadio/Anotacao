@@ -2,19 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import axios from 'axios';
 import { Alert } from 'react-native';
-import { getDataUser, handleCheckLogin } from './data';
-
-const getData = async () => {
-  try {
-    const value = await AsyncStorage.getItem('@nota_storage_Key_ip_server');
-    if (value !== null) {
-      return value;
-    }
-    return 0;
-  } catch (e) {
-    return 0;
-  }
-};
+import { getDataUrl, getDataUser, handleCheckLogin } from './data';
 
 // export const urlSocket = `http://192.168.40.7:4488`;
 
@@ -27,9 +15,14 @@ export const requestApi = async (props) => {
     notification = true,
     notificationError = true,
   } = props;
-  const ip = '192.168.40.94'; //await getData();
+  const url: any = await getDataUrl();
   const user = await getDataUser();
   const isLogado = await handleCheckLogin();
+
+  if (!url) {
+    Alert.alert('Erro', 'Necessário Informar URL');
+    return { success: false, message: ` Necessário Informar URL` };
+  }
 
   if ((!user || !isLogado) && route !== 'login') {
     Alert.alert('Erro', 'Necessário Fazer Login');
@@ -37,10 +30,9 @@ export const requestApi = async (props) => {
   }
 
   const api = axios.create({
-    baseURL: ' https://58e8-186-26-111-30.ngrok-free.app', //`http://${ip}:3131`,
+    baseURL: url, // ' https://58e8-186-26-111-30.ngrok-free.app', //`http://${ip}:3131`,
     timeout: 9000,
     timeoutErrorMessage: 'Erro de Conexão, Verifique sua Rede!!',
-    // baseURL: 'http://10.0.2.212:3333',
   });
   api.defaults.headers.Authorization = `Bearer ${user.token}`;
   try {

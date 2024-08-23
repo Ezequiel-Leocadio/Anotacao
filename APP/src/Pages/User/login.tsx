@@ -1,26 +1,23 @@
-import { Text, View } from 'react-native';
 import { Container, Form, Title } from './styles';
 import { useEffect, useRef, useState } from 'react';
-import {
-  getDataUser,
-  handleCheckLogin,
-  handleItensEdit,
-  storeData,
-} from '../../services/data';
+import { getDataUrl, handleCheckLogin, storeData } from '../../services/data';
 import Button from '../../components/button';
 import { requestApi } from '../../services/api';
 import Load from '../../components/load';
 import FormInput from '../../components/Input';
 
 function Login({ navigation, route }) {
-  const passwordRef: any = useRef();
+  const passwordRef: any = useRef(null);
 
   const [login, setLogin] = useState('');
+  const [url, setUrl] = useState('');
   const [senha, setSenha] = useState('');
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit() {
     setLoading(true);
+    await storeData({ tipo: 'url', value: url });
+
     const res = await requestApi({
       route: 'login',
       method: 'post',
@@ -44,6 +41,7 @@ function Login({ navigation, route }) {
       },
     });
     const unsubscribe = navigation.addListener('focus', async () => {
+      setUrl(String(await getDataUrl()));
       const isLodado = await handleCheckLogin();
       if (isLodado) {
         navigation.navigate('Perfil');
@@ -61,7 +59,16 @@ function Login({ navigation, route }) {
 
       <Form>
         <FormInput
-          // keyboardType="email-address"
+          autoCorrect={false}
+          autoCapitalize="none"
+          placeholder="url"
+          returnKeyType="next"
+          value={url}
+          onChangeText={setUrl}
+          label="URL"
+        />
+
+        <FormInput
           autoCorrect={false}
           autoCapitalize="none"
           placeholder="Digite seu Login"

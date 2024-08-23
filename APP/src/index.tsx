@@ -1,11 +1,8 @@
 import React, { useEffect } from 'react';
 import { StatusBar } from 'react-native';
 import App from './routes';
-// import KeepAwake from 'react-native-keep-awake';
 
 import WebSocketProvider, { WebSocketContext } from './WebSocket';
-
-import SystemNavigationBar from 'react-native-system-navigation-bar';
 
 const Index = () => {
   useEffect(() => {
@@ -15,7 +12,7 @@ const Index = () => {
 
   return (
     <WebSocketProvider>
-      {/* <StatusBar hidden /> */}
+      {/* <StatusBar  /> */}
       {/* <KeepAwake /> */}
 
       <App />
