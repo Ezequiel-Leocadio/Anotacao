@@ -19,6 +19,11 @@ export class CreateNotas1723552918747 implements MigrationInterface {
           },
 
           {
+            name: "uuid",
+            type: "varchar",
+          },
+
+          {
             name: "icon",
             type: "varchar",
           },
@@ -41,6 +46,11 @@ export class CreateNotas1723552918747 implements MigrationInterface {
           {
             name: "usuario",
             type: "integer",
+          },
+
+          {
+            name: "image",
+            type: "LONGTEXT",
           },
 
           {

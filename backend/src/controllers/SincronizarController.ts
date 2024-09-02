@@ -1,9 +1,35 @@
 import { Request, Response } from "express";
 import { NotaService } from "../services/NotaService";
 import { ListaService } from "../services/ListaService";
-import { arrayGroupBy } from "../util/format";
 
 class SincronizarController {
+  async inserirImage(req: Request, res: Response) {
+    const { id } = req.body;
+    console.log(req.body);
+    if (!req.file) {
+      return res.json({
+        success: false,
+        message: "Erro, Informe Um Arquivo Válido",
+      });
+    }
+    const { filename } = req.file;
+    const service = new NotaService();
+
+    const up = await service.updateImg({ image: filename, id });
+
+    if (up) {
+      return res.json({
+        success: true,
+        message: "Imagem Editada",
+      });
+    }
+
+    return res.json({
+      success: false,
+      message: "Erro ao Editar Imagem",
+    });
+  }
+
   async inserir(req: Request, res: Response) {
     const { itens } = req.body;
     const { id: user }: any = req.user;
@@ -12,8 +38,18 @@ class SincronizarController {
     const serviceList = new ListaService();
 
     for await (const i of itens) {
-      const { id_nivel, tipo, title, id, anotacao, list = [], icon } = i;
-      const find = await service.find(i.id);
+      const {
+        id_nivel,
+        tipo,
+        title,
+        id,
+        anotacao,
+        list = [],
+        icon,
+        uuid,
+        image,
+      } = i;
+      const find = await service.finduuid(i.uuid);
 
       let data = null;
 
@@ -26,6 +62,7 @@ class SincronizarController {
           anotacao,
           id,
           icon,
+          image,
         });
       } else {
         data = await service.create({
@@ -36,6 +73,8 @@ class SincronizarController {
           anotacao,
           id,
           icon,
+          uuid,
+          image,
         });
       }
 

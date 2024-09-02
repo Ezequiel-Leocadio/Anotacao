@@ -1,12 +1,16 @@
 import { Router } from "express";
+import multer from "multer";
+
 import authMiddleware from "./middleware/auth";
 
 import { UsuarioController } from "./controllers/UsuarioController";
 import { NotasController } from "./controllers/NotasController";
 import { ListasController } from "./controllers/ListasController";
 import { SincronizarController } from "./controllers/SincronizarController";
+import uploadConfig from "./config/upload";
 
 const router = Router();
+const upload = multer(uploadConfig);
 
 const usuarioController = new UsuarioController();
 const notasController = new NotasController();
@@ -39,6 +43,11 @@ router.post("/listas", listasController.inserir);
 router.put("/listas", listasController.editar);
 
 router.post("/sincronizar", sincronizarController.inserir);
+router.post(
+  "/sincronizarimage",
+  upload.single("file"),
+  sincronizarController.inserirImage
+);
 router.get("/sincronizar", sincronizarController.listar);
 
 export { router };

@@ -1,0 +1,38 @@
+{
+  "expo": {
+    "name": "NotasExpo",
+    "slug": "NotasExpo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/nota.png",
+    "userInterfaceStyle": "light",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "custom photos permission",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to open the camera",
+
+          "microphonePermission": false
+        }
+      ]
+    ],
+    "splash": {
+      "image": "./assets/notas.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/notas.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/nota.png"
+    }
+  }
+}

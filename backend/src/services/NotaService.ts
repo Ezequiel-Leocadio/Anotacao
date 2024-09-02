@@ -9,6 +9,8 @@ interface INotaRequest {
   anotacao?: string;
   tipo: string;
   usuario: number;
+  image?: string;
+  uuid?: string;
 }
 
 class NotaService {
@@ -20,6 +22,8 @@ class NotaService {
     usuario,
     id,
     icon,
+    uuid,
+    image,
   }: INotaRequest) {
     const repositories = getCustomRepository(NotasRepositories);
 
@@ -31,6 +35,8 @@ class NotaService {
       usuario,
       id,
       icon,
+      uuid,
+      image,
     });
 
     await repositories.save(create);
@@ -46,6 +52,7 @@ class NotaService {
     usuario,
     id,
     icon,
+    image,
   }: INotaRequest) {
     const repositories = getCustomRepository(NotasRepositories);
 
@@ -63,6 +70,26 @@ class NotaService {
       tipo,
       usuario,
       icon,
+      image,
+    };
+
+    await repositories.save(up);
+
+    return up;
+  }
+
+  async updateImg({ image, id }) {
+    const repositories = getCustomRepository(NotasRepositories);
+
+    const find = await repositories.findOne({ id });
+
+    if (!find) {
+      throw new Error("Erro ao buscar Nota");
+    }
+
+    const up = {
+      ...find,
+      image,
     };
 
     await repositories.save(up);
@@ -108,6 +135,18 @@ class NotaService {
     const find = await repositories.findOne({
       where: {
         id,
+      },
+    });
+
+    return find;
+  }
+
+  async finduuid(uuid) {
+    const repositories = getCustomRepository(NotasRepositories);
+
+    const find = await repositories.findOne({
+      where: {
+        uuid,
       },
     });
 
