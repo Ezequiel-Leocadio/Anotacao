@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Keyboard, Modal } from "react-native";
+import { ActivityIndicator, Alert, Keyboard, Modal, Text } from "react-native";
 import Icon from "@expo/vector-icons/MaterialIcons";
+import Iconf from "@expo/vector-icons/FontAwesome6";
 
 import { BodyChil, ButtonFloat, MBody, ModalContent } from "./styles";
 
@@ -12,6 +13,7 @@ export default function Float({
   top = 0,
   onKeyBoardHidden,
   position,
+  name,
   ...rest
 }) {
   let colorExa = "";
@@ -71,8 +73,19 @@ export default function Float({
                   color={color === "warning" ? "#000" : "#fff"}
                 />
               )}
+
+              {iconf && (
+                <Iconf
+                  name={iconf}
+                  size={35}
+                  color={color === "warning" ? "#000" : "#fff"}
+                />
+              )}
             </>
           )}
+          <Text style={{ color: color === "warning" ? "#000" : "#fff" }}>
+            {name || icon || iconf}
+          </Text>
         </ButtonFloat>
       )}
     </>

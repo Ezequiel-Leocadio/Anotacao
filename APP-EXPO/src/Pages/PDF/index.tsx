@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import { getData, getDataUrl } from "../../services/data";
 import { Container, NotaTitle, NotasContente } from "./styles";
 import Icon from "@expo/vector-icons/MaterialIcons";
-import { StdAlert } from "../../components/Alert";
+import { AlertConfirm, StdAlert } from "../../components/Alert";
 import { HtmlLivro } from "../../components/Print/livro";
 import { PrintFile } from "../../components/Print/print";
-import { Platform } from "react-native";
+
+// import * as Notifications from "expo-notifications";
 
 function PDF({ navigation, route }) {
   const [itens, setItens] = useState<any>([]);
@@ -25,14 +26,8 @@ function PDF({ navigation, route }) {
              <div class="cod">Cód:${i.id}</div>
             <div class="title">${i.title}</div>
            
+            ${i.image ? `<img src="${i.image}" alt=""/>` : ""}
             <div class="anotacao">${i.anotacao.replaceAll("\n", "</br>")}</div>
-            ${
-              i.image
-                ? `<img src="${url}${Platform.OS === "web" ? "" : "/"}files/${
-                    i.image
-                  }" alt=""/>`
-                : ""
-            }
         </div>
         `;
     }
@@ -115,6 +110,36 @@ function PDF({ navigation, route }) {
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", async () => {
       await loadItens();
+
+      //   const { status: existingStatus } =
+      //     await Notifications.getPermissionsAsync();
+      //   let finalStatus = existingStatus;
+      //   if (existingStatus !== "granted") {
+      //     const { status } = await Notifications.requestPermissionsAsync();
+      //     finalStatus = status;
+      //   }
+      //   if (finalStatus !== "granted") {
+      //     alert("Failed to get push token for push notification!");
+      //     return;
+      //   }
+      //   const res = await Notifications.getAllScheduledNotificationsAsync();
+      //   console.log(res);
+
+      //   await Notifications.scheduleNotificationAsync({
+      //     content: {
+      //       title: "You've got mail! 📬",
+      //       body: "Here is the notification body",
+      //       data: { data: "goes here", test: { test1: "more data" } },
+      //     },
+      //     trigger: { seconds: 2, channelId: "Teste" },
+      //   });
+
+      //   await Notifications.addNotificationReceivedListener((notification) => {
+      //     StdAlert(
+      //       notification.request.content.title,
+      //       notification.request.content.body
+      //     );
+      //   });
     });
 
     return unsubscribe;

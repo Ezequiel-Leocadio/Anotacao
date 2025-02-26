@@ -9,5 +9,6 @@ declare namespace Express {
     user: User;
     files: any;
     file: any;
+    io: any;
   }
 }

@@ -271,3 +271,20 @@ export async function validateValue({ schema = [], data }) {
     ErrorValidate(message);
   }
 }
+
+export function formatDateTimeUsa(dt) {
+  let data = new Date();
+  if (dt) {
+    data = new Date(dt);
+  }
+  const dia = data.getDate() < 10 ? `0${data.getDate()}` : data.getDate(); // 1-31
+  const mes =
+    1 + data.getMonth() < 10 ? `0${1 + data.getMonth()}` : 1 + data.getMonth(); // 0-11 (zero=janeiro)
+  const ano = data.getFullYear(); // 4 dígitos
+  const hora = data.getHours() < 10 ? `0${data.getHours()}` : data.getHours();
+  const minutos =
+    data.getMinutes() < 10 ? `0${data.getMinutes()}` : data.getMinutes();
+  const d = `${ano}-${mes}-${dia} ${hora}:${minutos}:00`.toString();
+
+  return d;
+}

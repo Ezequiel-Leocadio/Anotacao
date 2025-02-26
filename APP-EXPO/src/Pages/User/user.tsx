@@ -132,7 +132,7 @@ function User({ navigation }) {
         </Button>
 
         <Button
-          top={40}
+          top={20}
           size={100}
           icon="exit-to-app"
           color="danger"
@@ -140,6 +140,18 @@ function User({ navigation }) {
         >
           Sair
         </Button>
+
+        {/* <Button
+          top={30}
+          size={100}
+          icon="sync"
+          color="info"
+          onPress={() => {
+            navigation.navigate("Sincronizar");
+          }}
+        >
+          Sincronizar Dados
+        </Button> */}
       </Form>
     </Container>
   );

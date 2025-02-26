@@ -12,7 +12,7 @@ class Listas {
   id: number;
 
   @Column()
-  id_nota: number;
+  id_nota: string;
 
   @Column()
   posicao: number;

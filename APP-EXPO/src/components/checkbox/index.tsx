@@ -21,6 +21,7 @@ const checkbox = ({
   isSelected,
   onDelete,
   id,
+  onValueChange,
   ...rest
 }) => {
   const ref: any = useRef();
@@ -48,26 +49,34 @@ const checkbox = ({
   return (
     <Container key={String(id)}>
       <CheckboxContainer>
-        <TextPosition>{posicao < 10 ? "0" + posicao : posicao}</TextPosition>
+        {/* <TextPosition>{posicao < 10 ? "0" + posicao : posicao}</TextPosition> */}
         <CheckBox
           value={isSelected}
           // tintColors={{ true: "#4cc9f0", false: "#4cc9f0" }}
+          onValueChange={onValueChange}
           color="#4cc9f0"
           {...rest}
         />
-        <TextInput
-          ref={ref}
-          value={value}
-          onChangeText={setValue}
-          placeholderTextColor={"#ffffff"}
-          returnKeyType="next"
-          onSubmitEditing={() => onSubmit(value)}
-          decoration={decoration}
-        />
+        <TouchableOpacity
+          onPress={() => onValueChange()}
+          style={{ width: "80%" }}
+        >
+          <TextInput
+            ref={ref}
+            value={value}
+            onChangeText={setValue}
+            placeholderTextColor={"#ffffff"}
+            returnKeyType="next"
+            onSubmitEditing={() => onSubmit(value)}
+            decoration={decoration}
+          >
+            {value}
+          </TextInput>
+        </TouchableOpacity>
 
         <TouchableOpacity
-          onPress={() => {
-            if (AlertConfirm("Excluir Item", "")) {
+          onPress={async () => {
+            if (await AlertConfirm("Excluir Item", "")) {
               onDelete();
             }
           }}

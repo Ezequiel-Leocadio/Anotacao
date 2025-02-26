@@ -5,6 +5,7 @@ import io from "socket.io-client";
 
 import * as Device from "expo-device";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { getDataUrl } from "./services/data";
 
 const WebSocketContext = createContext(null);
 
@@ -27,13 +28,11 @@ const getData = async (tipo) => {
 
 async function conection(socket) {
   try {
-    const pathname = "novasenha";
-
-    const filial = await getData("filial");
+    const pathname = "notas";
 
     const deviceName = Device.modelName;
 
-    const agente = `${deviceName}_${pathname}__${filial}`;
+    const agente = `${deviceName}_${pathname}`;
     connectLogin(socket, agente, "");
   } catch (error) {
     alert(`Erro ${error}`);
@@ -43,6 +42,13 @@ async function conection(socket) {
 const WebSocketConst = ({ children }) => {
   const [socket, setSocket] = useState(null);
 
+  const sendMessage = ({ data, message }) => {
+    if (socket) {
+      socket.emit("send-message", JSON.stringify({ data, message }));
+    }
+    // dispatch(updateChatLog(payload));
+  };
+
   useEffect(() => {
     async function load() {}
     load();
@@ -51,9 +57,13 @@ const WebSocketConst = ({ children }) => {
   useEffect(() => {
     async function load() {
       if (!socket) {
-        const ip = await getData("ip_server");
-
-        const socketf = io(`http://${ip}:4488`);
+        const url: any = await getDataUrl();
+        if (!url) {
+          return;
+        }
+        // const ip = await getData("ip_server");
+        console.log(url);
+        const socketf = io(url);
         setSocket(socketf);
         // alert('Nova conecção');
 
@@ -77,7 +87,7 @@ const WebSocketConst = ({ children }) => {
         });
       }
     }
-    // load();
+    load();
 
     return () => {
       if (socket) {
@@ -88,7 +98,7 @@ const WebSocketConst = ({ children }) => {
   }, []);
 
   return (
-    <WebSocketContext.Provider value={{ socket, connectLogin }}>
+    <WebSocketContext.Provider value={{ socket, connectLogin, sendMessage }}>
       {children}
     </WebSocketContext.Provider>
   );

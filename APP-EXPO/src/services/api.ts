@@ -21,9 +21,13 @@ export const requestApi = async (props) => {
     return { success: false, message: ` Necessário Informar URL` };
   }
 
-  if ((!user || !isLogado) && route !== "login") {
-    StdAlert("Erro", "Necessário Fazer Login");
-    return { success: false, message: ` Necessário Fazer Login` };
+  if (
+    (!user || !isLogado) &&
+    route !== "login" &&
+    route !== "usuariolocation"
+  ) {
+    // StdAlert("Erro", "Necessário Fazer Login");
+    // return { success: false, message: ` Necessário Fazer Login` };
   }
 
   const api = axios.create({

@@ -2,3 +2,7 @@ input,
 textarea {
   outline: none;
 }
+
+div#root {
+  background: #000;
+}

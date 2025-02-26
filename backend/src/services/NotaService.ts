@@ -1,11 +1,12 @@
-import { getCustomRepository, Like, Not } from "typeorm";
+import { createConnection, getCustomRepository, Like, Not } from "typeorm";
 import { NotasRepositories } from "../repositories/NotasRepositories";
+import mysqldump from "mysqldump";
 
 interface INotaRequest {
-  id: number;
+  id: string;
   title: string;
   icon: string;
-  id_nivel: number;
+  id_nivel: string;
   anotacao?: string;
   tipo: string;
   usuario: number;
@@ -33,7 +34,7 @@ class NotaService {
       anotacao,
       tipo,
       usuario,
-      id,
+      id_nota: id,
       icon,
       uuid,
       image,
@@ -53,10 +54,15 @@ class NotaService {
     id,
     icon,
     image,
+    uuid,
   }: INotaRequest) {
     const repositories = getCustomRepository(NotasRepositories);
 
-    const find = await repositories.findOne({ id });
+    const find = await repositories.findOne({
+      where: {
+        uuid,
+      },
+    });
 
     if (!find) {
       throw new Error("Erro ao buscar Nota");
@@ -65,10 +71,12 @@ class NotaService {
     const up = {
       ...find,
       title,
-      id_nivel,
+      // id_nivel,
+      id_nota: id,
+
       anotacao,
       tipo,
-      usuario,
+      // usuario,
       icon,
       image,
     };
@@ -114,17 +122,19 @@ class NotaService {
     return list;
   }
 
-  async listAll() {
+  async listAll(date = null) {
     const repositories = getCustomRepository(NotasRepositories);
 
-    const list = await repositories.find({
-      where: {
-        tipo: Not("excluido"),
-      },
-      order: {
-        title: "ASC",
-      },
-    });
+    const list = await repositories.listAll(date);
+
+    // await repositories.find({
+    //   where: {
+    //     tipo: Not("excluido"),
+    //   },
+    //   order: {
+    //     title: "ASC",
+    //   },
+    // });
 
     return list;
   }
@@ -134,7 +144,7 @@ class NotaService {
 
     const find = await repositories.findOne({
       where: {
-        id,
+        id_nota: id,
       },
     });
 
@@ -151,6 +161,27 @@ class NotaService {
     });
 
     return find;
+  }
+
+  async backupDatabase() {
+    //  const connection = await createConnection();
+    const date = new Date();
+
+    const backupPath = `C:/Projetos/Anotacao/BKP_DB/backupNotas-${date.getDate()}-${
+      date.getMonth() + 1
+    }-${date.getFullYear()}.sql`;
+
+    const bkp = await mysqldump({
+      connection: {
+        host: "localhost",
+        user: "root",
+        password: process.env.DB_PASSWORD,
+        database: "notas",
+      },
+      dumpToFile: backupPath, // Caminho onde o dump será salvo
+    });
+
+    // console.log(bkp);
   }
 }
 export { NotaService };

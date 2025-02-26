@@ -62,7 +62,7 @@ export function HtmlEtiqueta(i) {
       ? `
     <script type="text/javascript">
     window.onload = function() {    
-        //window.print();
+        window.print();
         setTimeout(function() {
             //window.close();
         }, 1);

@@ -25,6 +25,8 @@ export const CheckboxContainer = styled.View`
 export const CheckBox = styled(CheckBoxR)`
   align-self: center;
   margin: 0 5px;
+  width: 25px;
+  height: 25px;
 `;
 
 export const Label: any = styled.Text`
@@ -39,13 +41,13 @@ export const TextPosition = styled.Text`
   color: #fff;
 `;
 
-export const TextInput: any = styled.TextInput`
+export const TextInput: any = styled.Text`
   color: #fff;
   background: transparent;
   width: 80%;
   border-radius: 5px;
   padding: 0;
-  height: 30px;
+  /* height: 30px; */
   text-decoration-style: solid;
   text-decoration-color: #fff;
   text-decoration-line: ${(props: any) =>

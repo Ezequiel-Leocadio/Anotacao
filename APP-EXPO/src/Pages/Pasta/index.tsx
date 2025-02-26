@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { Alert, TouchableOpacity, View } from "react-native";
 
 import ButtonFloatC from "../../components/button/ButtonFloat";
@@ -14,6 +14,8 @@ import {
 } from "../../services/data";
 import { AlertConfirm, StdAlert } from "../../components/Alert";
 import * as Crypto from "expo-crypto";
+import { requestApi } from "../../services/api";
+import { WebSocketContext } from "../../WebSocket";
 
 function Pasta({ navigation, route }) {
   const [loading, setLoading] = useState(false);
@@ -23,17 +25,19 @@ function Pasta({ navigation, route }) {
   const [modalEdit, setModalEdit] = useState(false);
   const [title, setTitle] = useState("");
   const [textSearch, setTextSearch] = useState("");
+  const ws: any = useContext(WebSocketContext);
 
   const [itenAdd, setItenAdd] = useState("");
 
   const [itens, setItens] = useState<any>([]);
 
-  const { id, numPasta } = route.params;
+  const { id, id_nivel, numPasta } = route.params;
 
   useEffect(() => {
     const unsubscribe = navigation.addListener("focus", async () => {
       // do something
-      //   console.log(id, numPasta);
+      // console.log(id, numPasta);
+
       await loadItens();
     });
 
@@ -50,9 +54,9 @@ function Pasta({ navigation, route }) {
       <View style={{ display: "flex", flexDirection: "row" }}>
         <TouchableOpacity
           style={{ marginRight: 20 }}
-          onPress={() => {
+          onPress={async () => {
             if (
-              AlertConfirm(
+              await AlertConfirm(
                 "Excluir Pasta",
                 "Irá Excluir a Pasta  e Tudo que Está Nela!"
               )
@@ -73,21 +77,23 @@ function Pasta({ navigation, route }) {
   useEffect(() => {
     async function load() {
       const itensGet: any = await getData({ tipo: "itens" });
-      const filter = itensGet.filter((f) => f.id_nivel === id);
+      const filter = itensGet.filter(
+        (f) => String(f.id_nivel) === String(id_nivel)
+      );
       setItens(filter);
 
-      if (id > 0) {
-        const index = itensGet.findIndex((f) => f.id === id);
-        if (index >= 0) {
-          //   console.log(itensGet[index]);
-          setTitle(itensGet[index].title);
-          navigation.setOptions({
-            title: itensGet[index].title || "Pasta",
+      // if (id > 0) {
+      const index = itensGet.findIndex((f) => String(f.id) === String(id));
+      if (index >= 0) {
+        //   console.log(itensGet[index]);
+        setTitle(itensGet[index].title);
+        navigation.setOptions({
+          title: itensGet[index].title || "Pasta",
 
-            headerRight: headerRight,
-          });
-        }
+          // headerRight: headerRight,
+        });
       }
+      // }
     }
 
     load();
@@ -96,20 +102,21 @@ function Pasta({ navigation, route }) {
   async function loadItens() {
     const itensGet: any = await getData({ tipo: "itens" });
 
-    const filter = itensGet.filter((f) => f.id_nivel === id);
+    const filter = itensGet.filter(
+      (f) => String(f.id_nivel) === String(id_nivel)
+    );
 
-    if (id > 0) {
-      const index = itensGet.findIndex((f) => f.id === id);
-      if (index >= 0) {
-        //   console.log(itensGet[index]);
-        setTitle(itensGet[index].title);
-        navigation.setOptions({
-          title: itensGet[index].title || "Pasta",
+    // if (id > 0) {
+    const index = itensGet.findIndex((f) => String(f.id) === String(id));
+    if (index >= 0) {
+      setTitle(itensGet[index].title);
+      navigation.setOptions({
+        title: itensGet[index].title || "Pasta",
 
-          headerRight: headerRight,
-        });
-      }
+        // headerRight: headerRight,
+      });
     }
+    // }
     setItens(filter);
   }
 
@@ -143,13 +150,16 @@ function Pasta({ navigation, route }) {
       default:
         break;
     }
-    let idIten = 0;
-    for await (const i of itensf) {
-      if (i.id > idIten) {
-        idIten = i.id;
-      }
-    }
-    idIten = idIten + 1;
+
+    const uuid = Crypto.randomUUID();
+
+    let idIten = uuid;
+    // for await (const i of itensf) {
+    //   if (i.id > idIten) {
+    //     idIten = i.id;
+    //   }
+    // }
+    // idIten = idIten + 1;
 
     itensf.push({
       id: idIten,
@@ -159,9 +169,25 @@ function Pasta({ navigation, route }) {
       id_nivel: id,
       list: [],
       edit: true,
-      uuid: Crypto.randomUUID(),
+      uuid: uuid,
+      existe: false,
     });
     await storeData({ tipo: "itens", value: JSON.stringify(itensf) });
+
+    ws.sendMessage({
+      data: {
+        id: idIten,
+        tipo: iten,
+        icon: icon,
+        title: title,
+        id_nivel: id,
+        list: [],
+        edit: true,
+        uuid: uuid,
+        existe: false,
+      },
+      message: iten,
+    });
     await loadItens();
 
     setModalVisible(false);
@@ -170,18 +196,25 @@ function Pasta({ navigation, route }) {
     // setTimeout(() => {
     //   setLoading(false);
     // }, 50);
-
+    // console.log(numPasta);
     if (iten === "nota") {
       navigation.navigate("Notas", { id: idIten });
     } else if (iten === "list") {
       navigation.navigate("Lista", { id: idIten });
     } else if (iten === "receita") {
       navigation.navigate("Notas", { id: idIten });
+    } else if (iten === "pasta") {
+      navigation.navigate("Pasta" + numPasta, {
+        id: idIten,
+        id_nivel: idIten,
+        numPasta: numPasta === 9 ? 0 : numPasta + 1,
+      });
     }
   }
 
   async function handleEditTitle(e) {
     await handleEdit({ id, anotacao: "", list: [], title: e });
+
     await loadItens();
     setModalEdit(false);
   }
@@ -194,6 +227,8 @@ function Pasta({ navigation, route }) {
     } else if (e.tipo === "pasta") {
       navigation.navigate("Pasta" + numPasta, {
         id: e.id,
+        id_nivel: e.id,
+
         numPasta: numPasta === 9 ? 0 : numPasta + 1,
       });
     } else if (e.tipo === "list") {
@@ -206,21 +241,41 @@ function Pasta({ navigation, route }) {
   async function handleSearch(e) {
     setTextSearch(e);
     const itensGet: any = await getData({ tipo: "itens" });
-    const itensf = itensGet.filter((f) => f.id_nivel === id);
+    const itensf = itensGet.filter(
+      (f) => String(f.id_nivel) === String(id_nivel)
+    );
 
-    const filter = itensGet.filter(
-      (f) =>
-        f.title.toUpperCase().match(e.toUpperCase()) ||
-        Number(f.id) === Number(e)
+    const filter = itensGet.filter((f) =>
+      f.title.toUpperCase().match(e.toUpperCase())
     );
     if (filter.length > 0 && e !== "") {
-      if (filter.length === 1 && Number(e) > 0) {
-        handleRoute(filter[0]);
-      }
+      // if (filter.length === 1 && Number(e) > 0) {
+      //   handleRoute(filter[0]);
+      // }
       setItens(filter);
     } else {
       setItens(itensf);
     }
+  }
+
+  async function handleSearchId(e) {
+    // setTextSearch(e);
+    const itensGet: any = await getData({ tipo: "itens" });
+    const itensf = itensGet.filter(
+      (f) => String(f.id_nivel) === String(id_nivel)
+    );
+
+    const filter = itensGet.filter(
+      (f) => Number(f.codigo) === Number(textSearch)
+    );
+
+    if (filter.length > 0) {
+      handleRoute(filter[0]);
+
+      setItens(filter);
+    } else {
+    }
+    setItens(itensf);
   }
 
   return (
@@ -273,25 +328,75 @@ function Pasta({ navigation, route }) {
           placeholder="Pesquisar, Titulo ou Código"
           value={textSearch}
           onChangeText={handleSearch}
+          onSubmitEditing={handleSearchId}
         />
       )}
-      {id === 0 && (
-        <ButtonFloat
-          color="warning"
-          icon="search"
-          bottom={100}
-          left={10}
-          position="right"
-          onKeyBoardHidden={true}
-          onPress={(e) => {
-            setSearch((e) => !e);
-            setTimeout(() => {
-              if (refSearch.current) {
-                refSearch.current.focus();
+      {id === 0 ? (
+        <>
+          {/* <ButtonFloat
+            color="info"
+            icon="picture-as-pdf"
+            bottom={170}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={(e) => {
+              navigation.navigate("PDF");
+            }}
+          /> */}
+          <ButtonFloat
+            color="warning"
+            icon="search"
+            name="Buscar"
+            bottom={100}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={(e) => {
+              setSearch((e) => !e);
+              setTimeout(() => {
+                if (refSearch.current) {
+                  refSearch.current.focus();
+                }
+              }, 10);
+            }}
+          />
+        </>
+      ) : (
+        <>
+          <ButtonFloat
+            color="danger"
+            icon="delete"
+            name="Excluir"
+            bottom={160}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={async () => {
+              if (
+                await AlertConfirm(
+                  "Excluir Pasta",
+                  "Irá Excluir a Pasta  e Tudo que Está Nela!"
+                )
+              ) {
+                handleDelete();
               }
-            }, 10);
-          }}
-        />
+            }}
+          />
+
+          <ButtonFloat
+            color="info"
+            icon="edit"
+            name="Editar"
+            bottom={90}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={() => {
+              setModalEdit(true);
+            }}
+          />
+        </>
       )}
 
       <ButtonFloatC

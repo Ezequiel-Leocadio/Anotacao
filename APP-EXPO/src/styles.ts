@@ -3,10 +3,10 @@ import { Image as ImageRn } from "react-native";
 
 export const ContentApp = styled.View`
   flex: 1;
-  /* width: 100%;
+  width: 100%;
   max-width: 500px;
   margin: 0 auto;
-  background: #000; */
+  background: #000;
 `;
 export const Content = styled.View`
   flex: 1;

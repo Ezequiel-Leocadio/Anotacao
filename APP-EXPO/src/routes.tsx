@@ -30,7 +30,7 @@ function HomeStackScreen() {
     <HomeStack.Navigator screenOptions={{ ...screenOptions }}>
       <HomeStack.Screen
         name="Home"
-        initialParams={{ id: 0, numPasta: 0 }}
+        initialParams={{ id: 0, id_nivel: 0, numPasta: 0 }}
         component={Pasta}
       />
       <HomeStack.Screen name="Notas" component={Note} />
@@ -115,14 +115,16 @@ export default function App() {
             tabBarIcon: ({ focused, color, size }) => {
               let iconName;
 
-              if (route.name === "Home.") {
-                iconName = "home";
+              if (route.name === "Notas.") {
+                iconName = "event-note";
               } else if (route.name === "Sincronizar.") {
                 iconName = "sync-alt";
-              } else if (route.name === "Login.") {
-                iconName = "login";
+              } else if (route.name === "Perfil.") {
+                iconName = "person";
               } else if (route.name === "PDF.") {
                 iconName = "picture-as-pdf";
+              } else if (route.name === "Avisos.") {
+                iconName = "notifications";
               }
 
               // You can return any component that you like here!
@@ -132,10 +134,11 @@ export default function App() {
             tabBarInactiveTintColor: "#fff",
           })}
         >
-          <Tab.Screen name="Home." component={HomeStackScreen} />
           <Tab.Screen name="Sincronizar." component={SincronizarScreen} />
+          <Tab.Screen name="Notas." component={HomeStackScreen} />
+          {/* <Tab.Screen name="Avisos." component={PdfScreen} /> */}
           <Tab.Screen name="PDF." component={PdfScreen} />
-          <Tab.Screen name="Login." component={SettingsStackScreen} />
+          {/* <Tab.Screen name="Perfil." component={SettingsStackScreen} /> */}
         </Tab.Navigator>
       </NavigationContainer>
     </ContentApp>

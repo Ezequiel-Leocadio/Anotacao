@@ -1,7 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { View, Modal, TouchableOpacity } from "react-native";
 
-import customModalStyles, { TextInput, Text, Title } from "./styles";
+import customModalStyles, {
+  TextInput,
+  Text,
+  Title,
+  ModalContent,
+} from "./styles";
 // import Button from '../button';
 
 interface Props {
@@ -44,7 +49,7 @@ const InputModal: FC<Props> = ({
       visible={modalVisible}
       onRequestClose={onRequestClose}
     >
-      <View style={customModalStyles.centeredView}>
+      <ModalContent>
         <View style={customModalStyles.modalView}>
           <Title style={customModalStyles.textSize}>{title}</Title>
 
@@ -86,7 +91,7 @@ const InputModal: FC<Props> = ({
           //   Salvar
           // </Button> */}
         </View>
-      </View>
+      </ModalContent>
     </Modal>
   );
 };

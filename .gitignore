@@ -41,6 +41,7 @@ dist
 CAIXA/Sistema-Big
 PCs/Sistema-Big
 LOG/
+BKP_DB/
 # TypeScript v1 declaration files
 typings/
 python/

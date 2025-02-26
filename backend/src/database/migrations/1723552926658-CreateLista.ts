@@ -16,7 +16,7 @@ export class CreateLista1723552926658 implements MigrationInterface {
 
           {
             name: "id_nota",
-            type: "integer",
+            type: "varchar",
           },
 
           {
@@ -46,16 +46,16 @@ export class CreateLista1723552926658 implements MigrationInterface {
           },
         ],
 
-        foreignKeys: [
-          {
-            name: "FKListaNotas",
-            referencedTableName: "notas",
-            referencedColumnNames: ["id"],
-            columnNames: ["id_nota"],
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE",
-          },
-        ],
+        // foreignKeys: [
+        //   {
+        //     name: "FKListaNotas",
+        //     referencedTableName: "notas",
+        //     referencedColumnNames: ["id"],
+        //     columnNames: ["id_nota"],
+        //     onDelete: "CASCADE",
+        //     onUpdate: "CASCADE",
+        //   },
+        // ],
       })
     );
   }

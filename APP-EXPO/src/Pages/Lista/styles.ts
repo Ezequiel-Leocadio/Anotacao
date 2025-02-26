@@ -24,7 +24,9 @@ export const TextInput = styled.TextInput`
   color: #fff;
 `;
 
-export const TextInputAdd = styled.TextInput`
+export const TextInputAdd = styled.TextInput.attrs({
+  placeholderTextColor: "#fff",
+})`
   width: 90%;
   padding: 5px;
   margin-left: 5px;

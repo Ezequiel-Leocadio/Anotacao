@@ -138,6 +138,17 @@ class UsuarioController {
       data: find,
     });
   }
+
+  async location(req: Request, res: Response) {
+    const { location }: any = req.body;
+
+    console.log(location);
+
+    return res.json({
+      success: true,
+      message: "Usuário",
+    });
+  }
 }
 
 export { UsuarioController };

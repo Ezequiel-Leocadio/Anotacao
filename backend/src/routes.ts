@@ -18,6 +18,16 @@ const listasController = new ListasController();
 const sincronizarController = new SincronizarController();
 
 router.post("/login", usuarioController.login);
+router.post("/usuariolocation", usuarioController.location);
+
+router.post("/sincronizar", sincronizarController.inserir);
+router.post("/sincronizarnew", sincronizarController.sinconizar);
+router.post(
+  "/sincronizarimage",
+  upload.single("file"),
+  sincronizarController.inserirImage
+);
+router.get("/sincronizar", sincronizarController.listar);
 
 router.use(authMiddleware);
 
@@ -41,13 +51,5 @@ router.get("/listas", listasController.listar);
 router.get("/lista", listasController.find);
 router.post("/listas", listasController.inserir);
 router.put("/listas", listasController.editar);
-
-router.post("/sincronizar", sincronizarController.inserir);
-router.post(
-  "/sincronizarimage",
-  upload.single("file"),
-  sincronizarController.inserirImage
-);
-router.get("/sincronizar", sincronizarController.listar);
 
 export { router };

@@ -9,6 +9,18 @@ export const storeData = async ({ value, tipo }) => {
   }
 };
 
+export const getStoreData = async ({ tipo }) => {
+  try {
+    const value = await AsyncStorage.getItem("@nota_storage_Key_" + tipo);
+    if (value !== null) {
+      return JSON.parse(value);
+    }
+    return null;
+  } catch (e) {
+    return null;
+  }
+};
+
 export const getDataUser = async () => {
   try {
     const value = await AsyncStorage.getItem("@nota_storage_Key_user");
@@ -67,11 +79,35 @@ export const handleEdit = async ({
   const itensGet: any = await getData({ tipo: "itens" });
   const index = itensGet.findIndex((f) => f.id === id);
   if (index >= 0) {
-    itensGet[index].title = title;
-    itensGet[index].edit = true;
-    itensGet[index].list = list;
-    itensGet[index].anotacao = anotacao;
-    itensGet[index].image = image;
+    let edit = false;
+    if (itensGet[index].title !== title && title !== "") {
+      console.log(itensGet[index].title, title);
+      itensGet[index].title = title;
+      edit = true;
+    }
+
+    if (itensGet[index].anotacao !== anotacao && anotacao !== "") {
+      itensGet[index].anotacao = anotacao;
+      console.log("kk");
+
+      edit = true;
+    }
+
+    if (itensGet[index].image !== image) {
+      console.log("kk");
+
+      itensGet[index].image = image;
+      edit = true;
+    }
+    if (JSON.stringify(itensGet[index].list) !== JSON.stringify(list)) {
+      itensGet[index].list = list;
+      console.log("kk");
+
+      edit = true;
+    }
+
+    console.log(edit);
+    itensGet[index].edit = edit;
   }
   await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
 };

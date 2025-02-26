@@ -29,6 +29,15 @@ export const Title = styled.Text`
   color: #fff;
 `;
 
+export const ModalContent: any = styled.TouchableOpacity`
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 30px;
+`;
+
 const customModalStyles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",
@@ -44,6 +53,7 @@ const customModalStyles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     width: "90%",
+
     height: 250,
     backgroundColor: "#615c5c",
     borderRadius: 10,

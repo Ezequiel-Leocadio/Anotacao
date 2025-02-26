@@ -31,13 +31,14 @@ export const ButtonFloat: any = styled.TouchableOpacity`
   background: ${(props: any) => props.color};
   border: 1px solid ${(props: any) => props.color};
   margin-top: ${(props: any) => props.mTop}px;
-  flex-direction: row;
+  flex-direction: column;
+
   text-align: center;
   /* right: 10px; */
   /* left: 10px; */
-  border-radius: 26px;
-  height: 55px;
-  width: 55px;
+  border-radius: 10px;
+  height: 60px;
+  width: 65px;
   bottom: ${(props: any) => props.bottom}px;
   /* shadow-color: #000;
   shadow-offset:  {width: 1, height: 13};
@@ -78,6 +79,9 @@ export const ModalContent: any = styled.TouchableOpacity`
   height: 100%;
   align-items: center;
   padding: 8px 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
 `;
 
 export const MBody: any = styled.View`

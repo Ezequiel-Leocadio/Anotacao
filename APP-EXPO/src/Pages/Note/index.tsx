@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { View, TouchableOpacity, Modal, Platform } from "react-native";
+import React, { useContext, useEffect, useState } from "react";
+import { View, TouchableOpacity, Modal, ToastAndroid } from "react-native";
 import {
   getDataUrl,
   handleDeleteItem,
@@ -15,27 +15,36 @@ import {
   Image,
   Text,
 } from "./styles";
-import { AlertConfirm } from "../../components/Alert";
+import { AlertConfirm, StdAlert } from "../../components/Alert";
 import ButtonFloat from "../../components/button/Float";
 import { HtmlEtiqueta } from "../../components/Print/etiqueta";
 import { PrintFile } from "../../components/Print/print";
 import * as ImagePicker from "expo-image-picker";
-import { requestApi } from "../../services/api";
+import Button from "../../components/button";
+import { ModalContent } from "../../components/button/styles";
+import * as Clipboard from "expo-clipboard";
+import { WebSocketContext } from "../../WebSocket";
 
 const App = ({ navigation, route }) => {
+  const ws: any = useContext(WebSocketContext);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [modalImg, setModalImg] = useState(false);
+  const [opcoes, setOpcoes] = useState(false);
   const [edit, setEdit] = useState(false);
   const [img, setImg] = useState(null);
+  const [uuid, setUuid] = useState(null);
+  const [codigo, setCodigo] = useState(null);
 
   const { id } = route.params;
 
   useEffect(() => {
     async function load() {
-      const { title, anotacao, image } = await handleFind(id);
+      const { title, anotacao, image, uuid, codigo } = await handleFind(id);
 
       setTitle(title);
+      setUuid(uuid);
+      setCodigo(codigo);
       if (anotacao === "" || anotacao === undefined) {
         setEdit(true);
       }
@@ -113,35 +122,72 @@ const App = ({ navigation, route }) => {
     }
   }
 
-  useEffect(() => {
-    navigation.setOptions({
-      title: title,
+  // useEffect(() => {
 
-      headerRight: () => (
-        <View style={{ display: "flex", flexDirection: "row" }}>
-          <TouchableOpacity
-            style={{ marginRight: 20 }}
-            onPress={() => {
-              if (
-                AlertConfirm("Excluir Nota", "Irá Excluir a Anotação Toda!")
-              ) {
-                handleDelete();
-              }
-            }}
-          >
-            <Icon name="delete" size={35} color="#f86161" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() =>
-              handleEdit({ id, anotacao: content, list: [], title, image: img })
-            }
-          >
-            <Icon name="save" size={35} color="#92effc" />
-          </TouchableOpacity>
-        </View>
-      ),
-    });
-  }, [navigation, title, content, img]);
+  //   navigation.setOptions({
+  //     title: title,
+
+  //     headerRight: () => (
+  //       <View style={{ display: "flex", flexDirection: "row" }}>
+  //         <TouchableOpacity
+  //           style={{ marginRight: 20 }}
+  //           onPress={async () => {
+  //             if (
+  //               await AlertConfirm(
+  //                 "Excluir Nota",
+  //                 "Irá Excluir a Anotação Toda!"
+  //               )
+  //             ) {
+  //               handleDelete();
+  //             }
+  //           }}
+  //         >
+  //           <Icon name="delete" size={35} color="#f86161" />
+  //         </TouchableOpacity>
+  //         <TouchableOpacity
+  //           style={{ width: 50 }}
+  //           onPress={() => {
+  //             handleEdit({
+  //               id,
+  //               anotacao: content,
+  //               list: [],
+  //               title,
+  //               image: img,
+  //             });
+  //             ws.sendMessage({
+  //               data: {
+  //                 id,
+  //                 anotacao: content,
+  //                 list: [],
+  //                 title,
+  //                 image: img,
+  //                 uuid,
+  //               },
+  //               message: "note",
+  //             });
+
+  //             StdAlert("Salvo", "Anotação Salva");
+  //           }}
+  //         >
+  //           <Icon name="save" size={35} color="#92effc" />
+  //         </TouchableOpacity>
+  //       </View>
+  //     ),
+  //   });
+  // }, [navigation, title, content, img, uuid]);
+
+  useEffect(() => {
+    async function load() {
+      await handleEdit({
+        id,
+        anotacao: content,
+        list: [],
+        title,
+        image: img,
+      });
+    }
+    load();
+  }, [title, content, img]);
 
   async function printEtiqueta() {
     const htmlIten = `
@@ -156,10 +202,17 @@ const App = ({ navigation, route }) => {
     await PrintFile(html);
   }
 
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(content);
+
+    setOpcoes(false);
+    // ToastAndroid.show("Copiado", ToastAndroid.SHORT);
+  };
+
   return (
     <>
       <Container>
-        <TextId>Código: {id}</TextId>
+        <TextId>Código: {codigo}</TextId>
         {edit ? (
           <TextInput
             placeholder="Titulo"
@@ -193,48 +246,151 @@ const App = ({ navigation, route }) => {
           visible={modalImg}
           onRequestClose={() => setModalImg(false)}
         >
-          {img && (
-            <Image
-              style={{ width: "100%", height: "100%" }}
-              source={{ uri: img }}
-            />
-          )}
+          <ModalContent>
+            {img && (
+              <Image
+                style={{ width: "95%", height: "80%", resizeMode: "contain" }}
+                source={{ uri: img }}
+              />
+            )}
+
+            <Button
+              top={10}
+              size={100}
+              icon="close"
+              color="danger"
+              onPress={() => setModalImg(false)}
+            >
+              Fechar
+            </Button>
+          </ModalContent>
         </Modal>
       </Container>
 
-      <ButtonFloat
-        color="success"
-        icon="edit"
-        bottom={150}
-        left={10}
-        position="right"
-        onKeyBoardHidden={true}
-        onPress={() => {
-          setEdit((e) => !e);
-        }}
-      />
+      {opcoes && (
+        <>
+          <ButtonFloat
+            color="warning"
+            icon="discount"
+            name="Imprimir"
+            bottom={355}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={(e) => {
+              printEtiqueta();
+              setOpcoes(false);
+            }}
+          />
+          <ButtonFloat
+            color="danger"
+            icon="delete"
+            name="Excluir"
+            bottom={286}
+            // left={10}
 
-      <ButtonFloat
-        color="info"
-        icon="image"
-        bottom={80}
-        left={10}
-        position="right"
-        onKeyBoardHidden={true}
-        onPress={(e) => {
-          pickImageAsync();
-        }}
-      />
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={async () => {
+              if (
+                await AlertConfirm(
+                  "Excluir Nota",
+                  "Irá Excluir a Anotação Toda!"
+                )
+              ) {
+                handleDelete();
+              }
+              setOpcoes(false);
+            }}
+          />
 
+          {/* <ButtonFloat
+            color="success"
+            icon="save"
+            name="Salvar"
+            bottom={218}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={() => {
+              handleEdit({
+                id,
+                anotacao: content,
+                list: [],
+                title,
+                image: img,
+              });
+              ws.sendMessage({
+                data: {
+                  id,
+                  anotacao: content,
+                  list: [],
+                  title,
+                  image: img,
+                  uuid,
+                },
+                message: "note",
+              });
+
+              StdAlert("Salvo", "Anotação Salva");
+              setOpcoes(false);
+            }}
+          /> */}
+
+          {!edit && (
+            <ButtonFloat
+              name="Copiar"
+              color="info"
+              icon="content-paste-go"
+              bottom={150}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={copyToClipboard}
+            />
+          )}
+
+          {edit && (
+            <ButtonFloat
+              name="Imagem"
+              color="info"
+              icon="image"
+              bottom={150}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={(e) => {
+                pickImageAsync();
+                setOpcoes(false);
+              }}
+            />
+          )}
+
+          <ButtonFloat
+            color="success"
+            icon="edit"
+            name="Editar"
+            bottom={80}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={() => {
+              setEdit((e) => !e);
+            }}
+          />
+        </>
+      )}
       <ButtonFloat
-        color="warning"
-        icon="discount"
+        color="primary"
+        icon={null}
+        iconf="gear"
+        name="Opçoes"
         bottom={10}
         left={10}
         position="right"
         onKeyBoardHidden={true}
         onPress={(e) => {
-          printEtiqueta();
+          setOpcoes((e) => !e);
         }}
       />
     </>

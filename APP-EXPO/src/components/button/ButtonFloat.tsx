@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Keyboard, Modal } from "react-native";
+import { ActivityIndicator, Alert, Keyboard, Modal, Text } from "react-native";
 import Icon from "@expo/vector-icons/Ionicons";
 
 import { BodyChil, ButtonFloat, MBody, ModalContent } from "./styles";
@@ -24,6 +24,11 @@ export default function ButtonFloatC({
     case "info":
       colorExa = "#0097e6";
       break;
+
+    case "primary":
+      colorExa = "#2eaccc";
+      break;
+
     case "warning":
       colorExa = "#f1c40f";
       break;

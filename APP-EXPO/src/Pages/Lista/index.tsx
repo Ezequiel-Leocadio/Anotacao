@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
-import { View, TouchableOpacity, StyleSheet, Alert } from "react-native";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { View, TouchableOpacity, Button } from "react-native";
 import {
   getData,
   handleDeleteItem,
@@ -17,24 +17,35 @@ import {
   ContentAdd,
   TextInputAdd,
 } from "./styles";
-import { AlertConfirm } from "../../components/Alert";
+import { AlertConfirm, StdAlert } from "../../components/Alert";
+import { WebSocketContext } from "../../WebSocket";
+import ButtonFloat from "../../components/button/Float";
 
 const App = ({ navigation, route }) => {
   const refScroll = useRef();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [textAdd, setTextAdd] = useState("");
+  const ws: any = useContext(WebSocketContext);
+  const [uuid, setUuid] = useState(null);
+  const [opcoes, setOpcoes] = useState(false);
 
   const [list, setList] = useState([]);
+  const [listAll, setListAll] = useState([]);
 
   const { id } = route.params;
 
   useEffect(() => {
     async function load() {
-      const { title, list } = await handleFind(id);
+      const { title, list, uuid } = await handleFind(id);
 
       setTitle(title);
-      setList(list);
+      setUuid(uuid);
+      const listf = list.filter((f) => !f.delet);
+      setListAll(list);
+
+      setList(listf.map((e) => ({ ...e })));
+      // console.log(listf);
 
       if (refScroll.current) {
         const e: any = refScroll.current;
@@ -56,11 +67,44 @@ const App = ({ navigation, route }) => {
       const indexEdit = i.findIndex((f: any) => f.id === idEdit);
 
       if (indexEdit >= 0) {
-        i.splice(indexEdit, 1);
+        // i.splice(indexEdit, 1);
+
+        i[indexEdit].delet = true;
+        i[indexEdit].edit = true;
       }
 
       itensGet[index].list = i;
-      setList(i);
+      itensGet[index].edit = true;
+      const listf = i.filter((f) => !f.delet);
+      setListAll(i);
+      setList(listf);
+    }
+
+    await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
+
+    setTimeout(() => {
+      setLoading(false);
+    }, 5);
+  }
+
+  async function handleDeleteItens() {
+    // setLoading(true);
+
+    const itensGet: any = await getData({ tipo: "itens" });
+    const index = itensGet.findIndex((f) => f.id === id);
+    if (index >= 0) {
+      const i = itensGet[index].list.map((f: any) => ({
+        ...f,
+        edit: f.marcado || false,
+        delet: f.marcado || false,
+      }));
+
+      itensGet[index].list = i;
+      itensGet[index].edit = true;
+      const listf = i.filter((f) => !f.delet);
+      setListAll(i);
+      console.log(i);
+      setList(listf);
     }
 
     await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
@@ -71,7 +115,7 @@ const App = ({ navigation, route }) => {
   }
 
   async function handleEditMarcado(e, idEdit) {
-    setLoading(true);
+    // setLoading(true);
     const i: any = list;
 
     const itensGet: any = await getData({ tipo: "itens" });
@@ -84,7 +128,9 @@ const App = ({ navigation, route }) => {
         i[indexEdit].marcado = !i[indexEdit].marcado;
         itensGet[index].list = i;
         itensGet[index].edit = true;
-        setList(i);
+        const listf = i.filter((f) => !f.delet);
+
+        setList(listf);
       }
     }
 
@@ -119,12 +165,20 @@ const App = ({ navigation, route }) => {
       } else {
         list.push(i);
       }
+      const indexEditAll = listAll.findIndex((f) => f.id === idEdit);
+
+      if (indexEditAll >= 0) {
+        listAll[indexEditAll].descricao = descricao;
+      } else {
+        listAll.push(i);
+      }
 
       itensGet[index].list = list;
       itensGet[index].edit = true;
     }
 
     await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
+
     setTextAdd("");
 
     setTimeout(() => {
@@ -145,27 +199,60 @@ const App = ({ navigation, route }) => {
     navigation.setOptions({
       title: title,
 
-      headerRight: () => (
-        <View style={{ display: "flex", flexDirection: "row" }}>
-          <TouchableOpacity
-            style={{ marginRight: 20 }}
-            onPress={() => {
-              if (AlertConfirm("Excluir Lista", "Irá Excluir a Lista Toda!")) {
-                handleDeleteLista();
-              }
-            }}
-          >
-            <Icon name="delete" size={35} color="#f86161" />
-          </TouchableOpacity>
-          <TouchableOpacity
-            onPress={() => handleEdit({ id, anotacao: "", list, title })}
-          >
-            <Icon name="save" size={35} color="#92effc" />
-          </TouchableOpacity>
-        </View>
-      ),
+      // headerRight: () => (
+      //   <View style={{ display: "flex", flexDirection: "row" }}>
+      //     <TouchableOpacity
+      //       style={{ marginRight: 10 }}
+      //       onPress={async () => {
+      //         if (
+      //           await AlertConfirm("Excluir Lista", "Irá Excluir a Lista Toda!")
+      //         ) {
+      //           handleDeleteLista();
+      //         }
+      //       }}
+      //     >
+      //       <Icon name="delete" size={35} color="#f86161" />
+      //     </TouchableOpacity>
+      //     <TouchableOpacity
+      //       style={{ marginRight: 10 }}
+      //       onPress={() => {
+      //         handleEdit({ id, anotacao: "", list: listAll, title });
+      //         ws.sendMessage({
+      //           data: {
+      //             id,
+      //             anotacao: "",
+      //             list: listAll,
+      //             title,
+      //             uuid,
+      //             image: "",
+      //           },
+      //           message: "lista",
+      //         });
+      //         // console.log(list);
+      //         StdAlert("Salvo", "Lista Salva");
+      //       }}
+      //     >
+      //       <Icon name="save" size={35} color="#92effc" />
+      //     </TouchableOpacity>
+
+      //     <TouchableOpacity
+      //       onPress={async () => {
+      //         if (
+      //           await AlertConfirm(
+      //             "Limpar Itens",
+      //             "Irá Excluir os Itens Riscados"
+      //           )
+      //         ) {
+      //           handleDeleteItens();
+      //         }
+      //       }}
+      //     >
+      //       <Icon name="clear" size={35} color="#f86161" />
+      //     </TouchableOpacity>
+      //   </View>
+      // ),
     });
-  }, [navigation, title]);
+  }, [navigation, title, uuid, listAll]);
 
   return (
     <Container>
@@ -176,8 +263,8 @@ const App = ({ navigation, route }) => {
         <ListCheckbox
           handleEditMarcado={handleEditMarcado}
           handleDelete={handleDelete}
-          itens={list.filter((f) => !(f.marcado === true))}
-          itens2={list.filter((f) => f.marcado === true)}
+          itens={list.filter((f) => !(f.marcado === true || f.marcado === 1))}
+          itens2={list.filter((f) => f.marcado === true || f.marcado === 1)}
         />
       </ScrollItens>
 
@@ -217,6 +304,88 @@ const App = ({ navigation, route }) => {
           />
         </TouchableOpacity>
       </ContentAdd>
+
+      {opcoes && (
+        <>
+          <ButtonFloat
+            color="danger"
+            icon="delete"
+            name="Excluir"
+            bottom={270}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={async (e) => {
+              if (
+                await AlertConfirm("Excluir Lista", "Irá Excluir a Lista Toda!")
+              ) {
+                handleDeleteLista();
+              }
+              setOpcoes(false);
+            }}
+          />
+          <ButtonFloat
+            color="dark"
+            icon="clear"
+            name="Limpar"
+            bottom={200}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={async (e) => {
+              if (
+                await AlertConfirm(
+                  "Limpar Itens",
+                  "Irá Excluir os Itens Riscados"
+                )
+              ) {
+                handleDeleteItens();
+              }
+              setOpcoes(false);
+            }}
+          />
+
+          <ButtonFloat
+            color="success"
+            icon="save"
+            name="Salvar"
+            bottom={130}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={async (e) => {
+              await handleEdit({ id, anotacao: "", list: listAll, title });
+              ws.sendMessage({
+                data: {
+                  id,
+                  anotacao: "",
+                  list: listAll,
+                  title,
+                  uuid,
+                  image: "",
+                },
+                message: "lista",
+              });
+              // console.log(list);
+              StdAlert("Salvo", "Lista Salva");
+              setOpcoes(false);
+            }}
+          />
+        </>
+      )}
+      <ButtonFloat
+        color="info"
+        icon={null}
+        iconf="gear"
+        name="Opçoes"
+        bottom={60}
+        left={10}
+        position="right"
+        onKeyBoardHidden={true}
+        onPress={(e) => {
+          setOpcoes((e) => !e);
+        }}
+      />
     </Container>
   );
 };

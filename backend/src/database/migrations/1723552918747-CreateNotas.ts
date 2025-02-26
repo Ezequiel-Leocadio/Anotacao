@@ -14,6 +14,10 @@ export class CreateNotas1723552918747 implements MigrationInterface {
             generationStrategy: "increment",
           },
           {
+            name: "id_nota",
+            type: "varchar",
+          },
+          {
             name: "title",
             type: "varchar",
           },
@@ -29,7 +33,7 @@ export class CreateNotas1723552918747 implements MigrationInterface {
           },
           {
             name: "id_nivel",
-            type: "integer",
+            type: "varchar",
           },
 
           {
@@ -51,6 +55,12 @@ export class CreateNotas1723552918747 implements MigrationInterface {
           {
             name: "image",
             type: "LONGTEXT",
+          },
+
+          {
+            name: "existe",
+            type: "boolean",
+            default: true,
           },
 
           {

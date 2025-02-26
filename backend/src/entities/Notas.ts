@@ -14,13 +14,16 @@ class Notas {
   id: number;
 
   @Column()
+  id_nota: string;
+
+  @Column()
   title: string;
 
   @Column()
   uuid: string;
 
   @Column()
-  id_nivel: number;
+  id_nivel: string;
 
   @Column()
   anotacao: string;
@@ -36,6 +39,9 @@ class Notas {
 
   @Column()
   image: string;
+
+  @Column()
+  existe: boolean;
 
   @CreateDateColumn()
   createdAt: Date;

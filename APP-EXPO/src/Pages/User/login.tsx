@@ -5,7 +5,6 @@ import Button from "../../components/button";
 import { requestApi } from "../../services/api";
 import Load from "../../components/load";
 import FormInput from "../../components/Input";
-import Entypo from "@expo/vector-icons/Entypo";
 
 function Login({ navigation, route }) {
   const passwordRef: any = useRef(null);
@@ -14,6 +13,47 @@ function Login({ navigation, route }) {
   const [url, setUrl] = useState("");
   const [senha, setSenha] = useState("");
   const [loading, setLoading] = useState(false);
+
+  // useEffect(() => {
+  //   async function load() {
+  //     console.log(Location.stopGeofencingAsync("taskName"));
+  //     const { status } = await Notifications.getPermissionsAsync();
+
+  //     console.log(status);
+  //     if (status !== "granted") {
+  //       alert("Erro você não possiu permissão de notificação");
+  //       return;
+  //     }
+
+  //     let { status: statusLocation } =
+  //       await Location.requestForegroundPermissionsAsync();
+  //     if (statusLocation !== "granted") {
+  //       alert("Permission to access location was denied");
+  //       return;
+  //     }
+
+  //     let token = await Notifications.getExpoPushTokenAsync();
+
+  //     console.log(token);
+
+  //     Notifications.addNotificationReceivedListener(async (notification) => {
+  //       console.log(notification);
+
+  //       let location = await Location.getCurrentPositionAsync({});
+
+  //       const res = await requestApi({
+  //         route: "usuariolocation",
+  //         method: "post",
+  //         data: { location },
+  //       });
+  //       if (res.success) {
+  //         //
+  //       }
+  //     });
+  //   }
+
+  //   load();
+  // }, []);
 
   async function handleSubmit() {
     setLoading(true);
