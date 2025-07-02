@@ -88,28 +88,31 @@ export const handleEdit = async ({
 
     if (itensGet[index].anotacao !== anotacao && anotacao !== "") {
       itensGet[index].anotacao = anotacao;
-      console.log("kk");
+      // console.log("kk");
 
       edit = true;
     }
 
     if (itensGet[index].image !== image) {
-      console.log("kk");
+      // console.log("kk");
 
       itensGet[index].image = image;
       edit = true;
     }
     if (JSON.stringify(itensGet[index].list) !== JSON.stringify(list)) {
       itensGet[index].list = list;
-      console.log("kk");
+      // console.log("kk");
 
       edit = true;
     }
 
-    console.log(edit);
-    itensGet[index].edit = edit;
+    if (!itensGet[index].edit) {
+      itensGet[index].edit = edit;
+    }
+    console.log(itensGet[index].edit);
   }
   await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
+  console.log("Nota Salva");
 };
 
 export const handleFind = async (id) => {
@@ -135,6 +138,7 @@ export const handleItensEdit = async () => {
 };
 
 export const handleCheckLogin = async () => {
+  return false;
   const user = await getDataUser();
 
   // console.log(user);

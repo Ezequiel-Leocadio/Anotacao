@@ -64,6 +64,12 @@ export class CreateNotas1723552918747 implements MigrationInterface {
           },
 
           {
+            name: "impresso",
+            type: "boolean",
+            default: false,
+          },
+
+          {
             name: "createdAt",
             type: "timestamp",
             default: "now()",

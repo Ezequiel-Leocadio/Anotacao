@@ -18,7 +18,7 @@ class ListasRepositories extends Repository<Listas> {
       sql = `
         select * from listas a 
         order by
-            a.posicao desc   
+            a.descricao asc   
         `;
     }
 

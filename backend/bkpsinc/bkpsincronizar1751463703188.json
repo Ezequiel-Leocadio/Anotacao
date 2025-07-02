@@ -1,0 +1,520 @@
+[
+  {
+    "title": "Comprar sitio",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+    "existe": 1,
+    "codigo": 181,
+    "id": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+    "list": [
+      {
+        "id": 318,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 14,
+        "descricao": "Açúcar ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 315,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 11,
+        "descricao": "Arroz ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 322,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 18,
+        "descricao": "Bolacha ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 293,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 12,
+        "descricao": "Cafe pareces 250g",
+        "createdAt": "2025-04-17T19:12:08.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 363,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 28,
+        "descricao": "Calabresa ",
+        "createdAt": "2025-06-28T13:23:18.000Z",
+        "updatedAt": "2025-06-28T13:23:18.000Z",
+        "marcado": true
+      },
+      {
+        "id": 316,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 12,
+        "descricao": "Cha ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 311,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 8,
+        "descricao": "Copos descartáveis mudas ",
+        "createdAt": "2025-05-02T15:40:01.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 329,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 19,
+        "descricao": "Escova roupa ",
+        "createdAt": "2025-06-05T12:04:48.000Z",
+        "updatedAt": "2025-06-07T12:03:10.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 314,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 11,
+        "descricao": "Extensão ",
+        "createdAt": "2025-05-02T20:08:52.000Z",
+        "updatedAt": "2025-05-02T20:08:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 313,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 10,
+        "descricao": "Extensão ",
+        "createdAt": "2025-05-02T20:08:52.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 317,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 14,
+        "descricao": "Frango ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 300,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 16,
+        "descricao": "Funil",
+        "createdAt": "2025-04-28T18:37:26.000Z",
+        "updatedAt": "2025-05-02T20:08:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 301,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 6,
+        "descricao": "Gracha ",
+        "createdAt": "2025-04-28T18:37:26.000Z",
+        "updatedAt": "2025-05-02T21:50:41.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 308,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 18,
+        "descricao": "Luvas",
+        "createdAt": "2025-04-28T18:37:44.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 321,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 17,
+        "descricao": "Macarrão ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 360,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 28,
+        "descricao": "Mussarela ",
+        "createdAt": "2025-06-28T13:21:58.000Z",
+        "updatedAt": "2025-06-28T13:21:58.000Z",
+        "marcado": true
+      },
+      {
+        "id": 345,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 21,
+        "descricao": "Óleo ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-16T12:34:46.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 320,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 16,
+        "descricao": "Óleo ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 297,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 13,
+        "descricao": "Óleo 2 tempos ",
+        "createdAt": "2025-04-26T14:04:54.000Z",
+        "updatedAt": "2025-05-02T21:50:41.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 319,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 15,
+        "descricao": "Ovos ",
+        "createdAt": "2025-06-04T12:21:35.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 354,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 22,
+        "descricao": "Polvilho doce ",
+        "createdAt": "2025-06-26T21:04:18.000Z",
+        "updatedAt": "2025-06-26T21:04:18.000Z",
+        "marcado": true
+      },
+      {
+        "id": 355,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 23,
+        "descricao": "Queijo minas ",
+        "createdAt": "2025-06-26T21:04:18.000Z",
+        "updatedAt": "2025-06-26T21:04:18.000Z",
+        "marcado": true
+      },
+      {
+        "id": 359,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 27,
+        "descricao": "Requeijão pizza",
+        "createdAt": "2025-06-28T13:21:58.000Z",
+        "updatedAt": "2025-06-28T13:21:58.000Z",
+        "marcado": true
+      },
+      {
+        "id": 299,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 15,
+        "descricao": "Restelo ",
+        "createdAt": "2025-04-28T18:37:26.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 344,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 20,
+        "descricao": "Substrato",
+        "createdAt": "2025-06-11T19:34:32.000Z",
+        "updatedAt": "2025-06-13T22:10:21.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 361,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 26,
+        "descricao": "Tomate",
+        "createdAt": "2025-06-28T13:21:58.000Z",
+        "updatedAt": "2025-06-28T13:21:58.000Z",
+        "marcado": true
+      },
+      {
+        "id": 298,
+        "id_nota": "3b73948d-3d14-4670-9bad-acb238a3bf0b",
+        "posicao": 14,
+        "descricao": "Vassoura ",
+        "createdAt": "2025-04-28T18:37:26.000Z",
+        "updatedAt": "2025-06-04T12:21:35.000Z",
+        "marcado": 1
+      }
+    ],
+    "edit": true
+  },
+  {
+    "title": "Compras kitnet",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+    "existe": 1,
+    "codigo": 150,
+    "id": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+    "list": [
+      {
+        "id": 286,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 6,
+        "descricao": "Açúcar ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 212,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 6,
+        "descricao": "Alicate cutícula ",
+        "createdAt": "2025-02-05T17:54:32.000Z",
+        "updatedAt": "2025-04-16T15:24:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 289,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 9,
+        "descricao": "Buxa ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 288,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 8,
+        "descricao": "Cordinha ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 364,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 15,
+        "descricao": "Detergente ",
+        "createdAt": "2025-06-28T15:51:11.000Z",
+        "updatedAt": "2025-06-28T15:51:11.000Z",
+        "marcado": true
+      },
+      {
+        "id": 284,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 4,
+        "descricao": "Detergente ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-17T14:46:53.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 290,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 10,
+        "descricao": "Leite",
+        "createdAt": "2025-04-16T18:18:52.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 237,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 11,
+        "descricao": "Ovos ",
+        "createdAt": "2025-03-06T12:43:37.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 209,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 3,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-02-04T17:58:50.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 346,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 12,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-14T15:38:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 291,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 11,
+        "descricao": "Peneira ",
+        "createdAt": "2025-04-17T14:46:53.000Z",
+        "updatedAt": "2025-04-17T19:12:08.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 285,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 5,
+        "descricao": "Ralo ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 348,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 14,
+        "descricao": "Sabão barra ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-28T15:51:11.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 365,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 16,
+        "descricao": "Sabonete ",
+        "createdAt": "2025-06-28T15:51:11.000Z",
+        "updatedAt": "2025-06-28T15:51:11.000Z",
+        "marcado": true
+      },
+      {
+        "id": 347,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 13,
+        "descricao": "Shampoo hedem sholdem ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-14T15:38:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 287,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 7,
+        "descricao": "Vasilha grande ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      }
+    ],
+    "edit": true
+  },
+  {
+    "title": "Contas",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "1b330d05-a2df-4ba3-8687-dad2518edbe7",
+    "existe": 1,
+    "codigo": 91,
+    "id": "91",
+    "list": [
+      {
+        "id": 100,
+        "id_nota": "91",
+        "posicao": 3,
+        "descricao": "Aluguel kit net",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-04-29T21:00:19.000Z",
+        "marcado": true
+      },
+      {
+        "id": 103,
+        "id_nota": "91",
+        "posicao": 6,
+        "descricao": "Cartão nubank",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-06T12:29:47.000Z",
+        "marcado": false
+      },
+      {
+        "id": 104,
+        "id_nota": "91",
+        "posicao": 7,
+        "descricao": "Cartão Santander ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-06T12:29:47.000Z",
+        "marcado": false
+      },
+      {
+        "id": 105,
+        "id_nota": "91",
+        "posicao": 8,
+        "descricao": "Dinheiro mãe ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-06T12:29:47.000Z",
+        "marcado": false
+      },
+      {
+        "id": 98,
+        "id_nota": "91",
+        "posicao": 1,
+        "descricao": "Energia kitnet ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-10T20:25:26.000Z",
+        "marcado": false
+      },
+      {
+        "id": 99,
+        "id_nota": "91",
+        "posicao": 2,
+        "descricao": "Energia sitio",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-09T20:32:43.000Z",
+        "marcado": false
+      },
+      {
+        "id": 102,
+        "id_nota": "91",
+        "posicao": 5,
+        "descricao": "Internet",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-06T12:29:47.000Z",
+        "marcado": false
+      },
+      {
+        "id": 101,
+        "id_nota": "91",
+        "posicao": 4,
+        "descricao": "Netflix",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-06-06T12:29:47.000Z",
+        "marcado": false
+      }
+    ],
+    "edit": true
+  },
+  {
+    "title": "Pizza Barão",
+    "id_nivel": "55",
+    "anotacao": "Em uma vasilha, \n350g farinha,\n20g açúcar, \n5g sal,\n20ml óleo, \n20ml leite, \n1 ovo\n4 g fermento seco \n250ml água gelada e misture bem\n\nDeixe a massa descansar por cima do fubá por 30 minutos\n\nAbre a massa no rolo\n\nRecheie a borda com catupiry e feche como mostrado no vídeo\n\nRecheie a pizza com molho de tomate, presunto, catupiry, mussarela, molho de tomate, parmesão e finalize com orégano\n\nForno 300 graus por 4 minutos",
+    "tipo": "receita",
+    "icon": "fastfood",
+    "image": null,
+    "uuid": "28bec1a3-aae7-4952-b022-2aa03ddca7ad",
+    "existe": 1,
+    "codigo": 120,
+    "id": "120",
+    "list": [],
+    "edit": true
+  }
+]

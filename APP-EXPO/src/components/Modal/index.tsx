@@ -29,7 +29,7 @@ const InputModal: FC<Props> = ({
   onRequestClose,
 }) => {
   const [value, setValue] = useState(String(defaultValue));
-  const ref: any = useRef();
+  const ref: any = useRef(null);
 
   useEffect(() => {
     if (ref.current) {

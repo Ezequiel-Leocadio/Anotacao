@@ -1,0 +1,6 @@
+npx expo export --platform web
+
+start 
+
+em dist
+npx serve

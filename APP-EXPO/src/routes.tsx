@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -9,8 +9,8 @@ import Lista from "./Pages/Lista";
 import Pasta from "./Pages/Pasta";
 import Sincronizar from "./Pages/Sincronizar";
 import PDF from "./Pages/PDF";
-import Login from "./Pages/User/login";
-import Perfil from "./Pages/User/user";
+// import Login from "./Pages/User/login";
+// import Perfil from "./Pages/User/user";
 import { ContentApp } from "./styles";
 
 const HomeStack = createNativeStackNavigator();
@@ -49,21 +49,6 @@ function HomeStackScreen() {
   );
 }
 
-const LoginStack = createNativeStackNavigator();
-
-function SettingsStackScreen() {
-  return (
-    <LoginStack.Navigator
-      screenOptions={{
-        ...screenOptions,
-      }}
-    >
-      <LoginStack.Screen name="Login" component={Login} />
-      <LoginStack.Screen name="Perfil" component={Perfil} />
-    </LoginStack.Navigator>
-  );
-}
-
 const SincronizarStack = createNativeStackNavigator();
 
 function SincronizarScreen() {
@@ -94,7 +79,7 @@ function PdfScreen() {
 
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+export default function Index() {
   return (
     <ContentApp>
       <NavigationContainer
@@ -107,8 +92,6 @@ export default function App() {
         }}
       >
         <Tab.Navigator
-          // screenOptions={{ headerShown: false }}
-
           screenOptions={({ route }) => ({
             headerShown: false,
 
@@ -136,9 +119,7 @@ export default function App() {
         >
           <Tab.Screen name="Sincronizar." component={SincronizarScreen} />
           <Tab.Screen name="Notas." component={HomeStackScreen} />
-          {/* <Tab.Screen name="Avisos." component={PdfScreen} /> */}
           <Tab.Screen name="PDF." component={PdfScreen} />
-          {/* <Tab.Screen name="Perfil." component={SettingsStackScreen} /> */}
         </Tab.Navigator>
       </NavigationContainer>
     </ContentApp>

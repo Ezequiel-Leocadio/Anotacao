@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "set NODE_ENV=dev&&  npm-run-all -p dev:*",
     "dev:server": "ts-node-dev  src/server.ts ",
-    "dev:socket": "sucrase-node  src/socket.js",
+    "devv:socket": "sucrase-node  src/socket.js",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "devDependencies": {

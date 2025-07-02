@@ -2,6 +2,9 @@ import { Request, Response } from "express";
 import { NotaService } from "../services/NotaService";
 import { ListaService } from "../services/ListaService";
 
+import fs from "fs";
+import path from "path";
+
 class SincronizarController {
   async inserirImage(req: Request, res: Response) {
     const { id } = req.body;
@@ -34,6 +37,25 @@ class SincronizarController {
     const { itens } = req.body;
     // const { id: user }: any = req.user;
 
+    // Diretório onde o arquivo será salvo
+    const folderPath = "C:/Projetos/Anotacao/backend/bkpsinc/";
+
+    // Criar a pasta caso não exista
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+
+    // Caminho do arquivo
+    const date = new Date();
+
+    const filePath = path.join(
+      folderPath,
+      `bkpsincronizar${date.getTime()}.json`
+    );
+
+    // Escrever o arquivo JSON
+    await fs.writeFileSync(filePath, JSON.stringify(itens, null, 2), "utf8");
+
     const service = new NotaService();
     const serviceList = new ListaService();
 
@@ -53,6 +75,12 @@ class SincronizarController {
       // const find = await service.finduuid(uuid);
 
       let data = null;
+
+      if (tipo === "receita" || tipo === "nota") {
+        if (anotacao === "" || anotacao === undefined || anotacao === null) {
+          throw new Error("Erro Anotação Nula");
+        }
+      }
 
       if (existe) {
         data = await service.update({
@@ -142,6 +170,27 @@ class SincronizarController {
     const datef = null;
     // console.log(req.body);
 
+    // Diretório onde o arquivo será salvo
+    const folderPath = "C:/Projetos/Anotacao/backend/bkpsinc/";
+
+    // Criar a pasta caso não exista
+    if (!fs.existsSync(folderPath)) {
+      fs.mkdirSync(folderPath, { recursive: true });
+    }
+
+    // Caminho do arquivo
+    const datee = new Date();
+
+    const filePath = path.join(
+      folderPath,
+      `bkpsincronizar${datee.getTime()}.json`
+    );
+
+    console.log(filePath);
+
+    // Escrever o arquivo JSON
+    await fs.writeFileSync(filePath, JSON.stringify(itens, null, 2), "utf8");
+
     const service = new NotaService();
     const serviceList = new ListaService();
 
@@ -164,6 +213,12 @@ class SincronizarController {
       let data = null;
 
       const find = await service.finduuid(uuid);
+
+      if (tipo === "receita" || tipo === "nota") {
+        if (anotacao === "" || anotacao === undefined || anotacao === null) {
+          throw new Error("Erro Anotação Nula");
+        }
+      }
 
       if (find) {
         data = await service.update({
@@ -204,13 +259,17 @@ class SincronizarController {
         let idI = id;
         const find = await serviceList.find({ id, id_nota });
         if (find) {
-          await serviceList.update({
-            descricao,
-            id_nota,
-            posicao,
-            id,
-            marcado,
-          });
+          if (delet === 1 || delet === true) {
+            await serviceList.delet({ id: idI, id_nota });
+          } else {
+            await serviceList.update({
+              descricao,
+              id_nota,
+              posicao,
+              id,
+              marcado,
+            });
+          }
         } else {
           const insert = await serviceList.create({
             descricao,
@@ -223,10 +282,6 @@ class SincronizarController {
           if (insert) {
             idI = insert.id;
           }
-        }
-
-        if (delet) {
-          await serviceList.delet({ id: idI, id_nota });
         }
       }
     }

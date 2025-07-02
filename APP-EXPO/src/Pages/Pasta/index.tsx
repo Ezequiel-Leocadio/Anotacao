@@ -14,7 +14,7 @@ import {
 } from "../../services/data";
 import { AlertConfirm, StdAlert } from "../../components/Alert";
 import * as Crypto from "expo-crypto";
-import { requestApi } from "../../services/api";
+// import { requestApi } from "../../services/api";
 import { WebSocketContext } from "../../WebSocket";
 
 function Pasta({ navigation, route }) {

@@ -1,12 +1,22 @@
-import React, { useContext, useEffect, useState } from "react";
-import { View, TouchableOpacity, Modal, ToastAndroid } from "react-native";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import {
+  View,
+  TouchableOpacity,
+  Modal,
+  ToastAndroid,
+  Alert,
+  Platform,
+  AppState,
+  BackHandler,
+  KeyboardAvoidingView,
+} from "react-native";
 import {
   getDataUrl,
   handleDeleteItem,
   handleEdit,
   handleFind,
 } from "../../services/data";
-import Icon from "@expo/vector-icons/MaterialIcons";
+// import Icon from "@expo/vector-icons/MaterialIcons";
 import {
   Container,
   TextId,
@@ -40,7 +50,9 @@ const App = ({ navigation, route }) => {
 
   useEffect(() => {
     async function load() {
-      const { title, anotacao, image, uuid, codigo } = await handleFind(id);
+      const { title, anotacao, image, uuid, codigo, tipo } = await handleFind(
+        id
+      );
 
       setTitle(title);
       setUuid(uuid);
@@ -49,6 +61,12 @@ const App = ({ navigation, route }) => {
         setEdit(true);
       }
       setContent(anotacao);
+
+      navigation.setOptions({
+        title: title || tipo,
+
+        // headerRight: headerRight,
+      });
 
       // if (image?.name) {
       setImg(image);
@@ -176,26 +194,52 @@ const App = ({ navigation, route }) => {
   //   });
   // }, [navigation, title, content, img, uuid]);
 
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
     async function load() {
-      await handleEdit({
-        id,
-        anotacao: content,
-        list: [],
-        title,
-        image: img,
-      });
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+      timeoutRef.current = setTimeout(async () => {
+        await handleEdit({
+          id,
+          anotacao: content,
+          list: [],
+          title,
+          image: img,
+        });
+      }, 1 * 1000); // espera 1segundo após o usuário parar de digitar
     }
     load();
+
+    // Cleanup se o componente desmontar ou as deps mudarem
+    return () => {
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [title, content, img]);
 
   async function printEtiqueta() {
     const htmlIten = `
-        <div class="etiqueta">
+        <div class="etiqueta novap">
         <div class="title">${title}</div>
-        <div class="codigo">Código: ${id}</div>
-          
+        <div class="codigo">Código: ${codigo}</div>          
         </div>
+
+          <div class="novap">
+        <div class="nv2">
+            <h1  class="nv2">↳ ${title}</h1>
+               <div class="itens">
+             <div class="cod">Cód:${codigo}</div>
+            <div class="title">${title}</div>
+
+            ${img ? `<img src="${img}" alt=""/>` : ""}
+            <div class="anotacao">${content.replaceAll("\n", "</br>")}</div>
+        </div>
+            </div>
+            </div>
     `;
 
     const html = HtmlEtiqueta(htmlIten);
@@ -210,8 +254,12 @@ const App = ({ navigation, route }) => {
   };
 
   return (
-    <>
-      <Container>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={80}
+      behavior={Platform.OS === "ios" ? "padding" : "height"} // ou "height"
+      style={[{ flex: 1 }]}
+    >
+      <Container contentContainerStyle={{ flexGrow: 1 }}>
         <TextId>Código: {codigo}</TextId>
         {edit ? (
           <TextInput
@@ -270,19 +318,6 @@ const App = ({ navigation, route }) => {
       {opcoes && (
         <>
           <ButtonFloat
-            color="warning"
-            icon="discount"
-            name="Imprimir"
-            bottom={355}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={(e) => {
-              printEtiqueta();
-              setOpcoes(false);
-            }}
-          />
-          <ButtonFloat
             color="danger"
             icon="delete"
             name="Excluir"
@@ -337,6 +372,20 @@ const App = ({ navigation, route }) => {
             }}
           /> */}
 
+          <ButtonFloat
+            color="warning"
+            icon="discount"
+            name="Imprimir"
+            bottom={218}
+            left={10}
+            position="right"
+            onKeyBoardHidden={true}
+            onPress={(e) => {
+              printEtiqueta();
+              setOpcoes(false);
+            }}
+          />
+
           {!edit && (
             <ButtonFloat
               name="Copiar"
@@ -376,6 +425,7 @@ const App = ({ navigation, route }) => {
             onKeyBoardHidden={true}
             onPress={() => {
               setEdit((e) => !e);
+              setOpcoes(false);
             }}
           />
         </>
@@ -393,7 +443,7 @@ const App = ({ navigation, route }) => {
           setOpcoes((e) => !e);
         }}
       />
-    </>
+    </KeyboardAvoidingView>
   );
 };
 

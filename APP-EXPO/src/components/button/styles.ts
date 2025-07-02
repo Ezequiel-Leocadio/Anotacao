@@ -67,7 +67,7 @@ export const Icon: any = styled(Iconn)`
   background: ${(props: any) => props.colorIcon};
 `;
 
-export const IconF = styled(IconFf)`
+export const IconF: any = styled(IconFf)`
   padding: 2px;
   border-radius: 4px;
   background: ${(props: any) => props.colorIcon};

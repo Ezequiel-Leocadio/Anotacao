@@ -30,6 +30,13 @@ export function HtmlEtiqueta(i) {
             margin-bottom: 25px;
         }
 
+         img{
+            width: auto;
+            max-width: 200px;
+            margin: 5px auto;
+            display: flex;
+        }
+
       
 
         @media print {
@@ -41,7 +48,7 @@ export function HtmlEtiqueta(i) {
             -webkit-print-color-adjust: exact;
           }
 
-          div.novap {
+         div.novap {
             margin: 0;
             /* width: 100%; */
             page-break-after: always; /* Cada pelemento será impresso em uma nova página. */

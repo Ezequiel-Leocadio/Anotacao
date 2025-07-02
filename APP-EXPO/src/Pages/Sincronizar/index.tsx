@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Alert, Platform, Text, View } from "react-native";
 import { Container, Form, Title } from "./styles";
 import { useEffect, useState } from "react";
 import {
@@ -15,11 +15,120 @@ import { requestApi } from "../../services/api";
 import Load from "../../components/load";
 import FormInput from "../../components/Input";
 
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as FileSystem from "expo-file-system";
+import * as Sharing from "expo-sharing";
+import * as DocumentPicker from "expo-document-picker";
+
 function Sincronizar({ navigation, route }) {
   const [itens, setItens] = useState([]);
   const [url, setUrl] = useState("");
 
   const [loading, setLoading] = useState(false);
+
+  const exportData = async () => {
+    try {
+      // Obtém todas as chaves do AsyncStorage
+      const keys = await AsyncStorage.getAllKeys();
+
+      // Obtém os valores das chaves
+      const items = await AsyncStorage.multiGet(keys);
+
+      // Converte para um objeto JSON
+      const jsonData = Object.fromEntries(items);
+
+      // Caminho do arquivo para salvar
+      const fileUri = FileSystem.documentDirectory + "dados_app_notas.json";
+
+      // Salva o JSON no dispositivo
+      await FileSystem.writeAsStringAsync(
+        fileUri,
+        JSON.stringify(jsonData, null, 2)
+      );
+
+      // Compartilha o arquivo para download
+      await Sharing.shareAsync(fileUri);
+
+      alert("Arquivo exportado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao exportar dados:", error);
+    }
+  };
+
+  function base64DataUriToJson(dataUri: string): any {
+    // Remove o prefixo 'data:application/json;base64,'
+    const base64String = dataUri.split(",")[1];
+
+    // Decodifica de Base64 para string
+    // const jsonString = atob(base64String);
+
+    // Decodifica base64 em uma string com caracteres corretos em UTF-8
+    const decodedUtf8String = decodeURIComponent(
+      Array.prototype.map
+        .call(
+          atob(base64String),
+          (c: string) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2)
+        )
+        .join("")
+    );
+    // Converte a string para objeto JSON
+    return JSON.parse(decodedUtf8String);
+  }
+
+  const importData = async () => {
+    try {
+      // Abre o seletor de arquivos para escolher o JSON
+      const result: any = await DocumentPicker.getDocumentAsync({
+        type: "application/json",
+        copyToCacheDirectory: true, // Garante que o arquivo pode ser lido
+      });
+
+      if (result.canceled) {
+        alert("Importação cancelada.");
+        return;
+      }
+
+      // Caminho do arquivo selecionado
+      const fileUri = result.assets[0].uri;
+
+      if (Platform.OS === "web") {
+        for (const [key, value] of Object.entries(
+          base64DataUriToJson(fileUri)
+        )) {
+          await AsyncStorage.setItem(key, value);
+          // await AsyncStorage.setItem(key, JSON.stringify(value));
+        }
+        return;
+      }
+
+      // Verifica se o arquivo pode ser lido
+      const fileInfo = await FileSystem.getInfoAsync(fileUri);
+      if (!fileInfo.exists) {
+        throw new Error("O arquivo não foi encontrado.");
+      }
+
+      // Lê o conteúdo do arquivo
+      const jsonContent = await FileSystem.readAsStringAsync(fileUri, {
+        encoding: FileSystem.EncodingType.UTF8,
+      });
+
+      // Converte para um objeto JSON
+      const data = JSON.parse(jsonContent);
+
+      // Salva os dados no AsyncStorage
+      for (const [key, value] of Object.entries(data)) {
+        // console.log(key);
+
+        await AsyncStorage.setItem(key, value);
+        // await AsyncStorage.setItem(key, JSON.stringify(value));
+      }
+
+      alert("Dados importados com sucesso!");
+    } catch (error) {
+      console.error("Erro ao importar dados:", error);
+      alert("Erro ao importar dados!");
+    }
+  };
 
   async function handleSinc() {
     // await storeData({ value: new Date(), tipo: "date" });
@@ -137,13 +246,33 @@ function Sincronizar({ navigation, route }) {
       </Form>
 
       <Button
-        top={70}
+        top={50}
         size={100}
         icon="sync"
         color="success"
         onPress={() => handleSinc()}
       >
         Sincronizar
+      </Button>
+
+      <Button
+        top={30}
+        size={100}
+        icon="import-export"
+        color="info"
+        onPress={() => exportData()}
+      >
+        Exportar Dados
+      </Button>
+
+      <Button
+        top={30}
+        size={100}
+        icon="import-export"
+        color="success"
+        onPress={() => importData()}
+      >
+        Importar Dados
       </Button>
     </Container>
   );

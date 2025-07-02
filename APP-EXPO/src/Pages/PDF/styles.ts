@@ -2,7 +2,7 @@ import styled from "styled-components/native";
 
 export const Container = styled.ScrollView`
   display: flex;
-  background: #524f4f;
+  background-color: #524f4f;
   height: 100%;
 `;
 

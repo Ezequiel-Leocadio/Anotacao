@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "NotasExpo",
-    "slug": "NotasExpo",
+    "name": "Lembretes",
+    "slug": "Lembretes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/notas3.png",
@@ -15,7 +15,9 @@
           "microphonePermission": false
         }
       ],
-      ["expo-notifications"],
+      [
+        "expo-notifications"
+      ],
       [
         "expo-build-properties",
         {
@@ -35,19 +37,22 @@
       "supportsTablet": true
     },
     "android": {
-      "permissions": ["ACCESS_FINE_LOCATION", "ACCESS_BACKGROUND_LOCATION"],
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ],
       "adaptiveIcon": {
         "foregroundImage": "./assets/notas3.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.ezequielleocadio.notasexpo"
+      "package": "com.ezequielleocadio.notaszekexpo"
     },
     "web": {
       "favicon": "./assets/notas3.png"
     },
     "extra": {
       "eas": {
-        "projectId": "9945d3fb-8c38-4cab-8b5d-715f646c9809"
+        "projectId": "3e994e82-a96a-4938-9d95-d9d20db312da"
       }
     }
   }

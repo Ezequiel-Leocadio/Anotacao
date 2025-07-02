@@ -43,6 +43,9 @@ class Notas {
   @Column()
   existe: boolean;
 
+  @Column()
+  impresso: boolean;
+
   @CreateDateColumn()
   createdAt: Date;
 

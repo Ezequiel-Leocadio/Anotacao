@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { View, TouchableOpacity, Button } from "react-native";
+import {
+  View,
+  TouchableOpacity,
+  Button,
+  KeyboardAvoidingView,
+  Platform,
+} from "react-native";
 import {
   getData,
   handleDeleteItem,
@@ -22,7 +28,7 @@ import { WebSocketContext } from "../../WebSocket";
 import ButtonFloat from "../../components/button/Float";
 
 const App = ({ navigation, route }) => {
-  const refScroll = useRef();
+  const refScroll = useRef(null);
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState("");
   const [textAdd, setTextAdd] = useState("");
@@ -63,7 +69,7 @@ const App = ({ navigation, route }) => {
     const itensGet: any = await getData({ tipo: "itens" });
     const index = itensGet.findIndex((f) => f.id === id);
     if (index >= 0) {
-      const i = list;
+      const i = itensGet[index].list;
       const indexEdit = i.findIndex((f: any) => f.id === idEdit);
 
       if (indexEdit >= 0) {
@@ -140,7 +146,64 @@ const App = ({ navigation, route }) => {
     }, 5);
   }
 
+  async function handleEditDescricao(descricao, idEdit) {
+    // setLoading(true);
+    const i: any = list;
+
+    const itensGet: any = await getData({ tipo: "itens" });
+    const index = itensGet.findIndex((f) => f.id === id);
+
+    if (index >= 0) {
+      const indexEdit = i.findIndex((f) => f.id === idEdit);
+
+      if (indexEdit >= 0) {
+        i[indexEdit].descricao = descricao;
+        itensGet[index].list = i;
+        itensGet[index].edit = true;
+        const listf = i.filter((f) => !f.delet);
+
+        setList(listf);
+      }
+    }
+
+    await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
+    setTimeout(() => {
+      setLoading(false);
+    }, 5);
+  }
+
+  async function handleEditMarcadoTodos() {
+    // setLoading(true);
+    const i: any = list;
+
+    const itensGet: any = await getData({ tipo: "itens" });
+    const index = itensGet.findIndex((f) => f.id === id);
+
+    if (index >= 0) {
+      const itensf = i.map((e) => ({
+        ...e,
+        marcado: false,
+      }));
+
+      itensGet[index].list = itensf;
+      itensGet[index].edit = true;
+
+      const listf = itensf.filter((f) => !f.delet);
+
+      setList(listf);
+    }
+
+    await storeData({ tipo: "itens", value: JSON.stringify(itensGet) });
+    setTimeout(() => {
+      setLoading(false);
+    }, 5);
+  }
+
   async function handleAdd({ descricao, posicao, idEdit }) {
+    if (descricao === "") {
+      await StdAlert("Erro", "Descricao Vazia!!");
+      return;
+    }
     const itensGet: any = await getData({ tipo: "itens" });
     const index = itensGet.findIndex((f) => f.id === id);
     if (index >= 0) {
@@ -256,136 +319,170 @@ const App = ({ navigation, route }) => {
 
   return (
     <Container>
-      <ScrollItens ref={refScroll}>
-        <Load loading={loading} />
-        <TextInput placeholder="Titulo" value={title} onChangeText={setTitle} />
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={105}
+        behavior={Platform.OS === "ios" ? "padding" : "height"} // ou "height"
+        style={[{ flex: 1 }]}
+      >
+        <ScrollItens ref={refScroll}>
+          <Load loading={loading} />
+          <TextInput
+            placeholder="Titulo"
+            value={title}
+            onChangeText={setTitle}
+          />
 
-        <ListCheckbox
-          handleEditMarcado={handleEditMarcado}
-          handleDelete={handleDelete}
-          itens={list.filter((f) => !(f.marcado === true || f.marcado === 1))}
-          itens2={list.filter((f) => f.marcado === true || f.marcado === 1)}
+          <ListCheckbox
+            handleEditMarcado={handleEditMarcado}
+            handleEditDescricao={handleEditDescricao}
+            handleDelete={handleDelete}
+            itens={list.filter((f) => !(f.marcado === true || f.marcado === 1))}
+            itens2={list.filter((f) => f.marcado === true || f.marcado === 1)}
+          />
+        </ScrollItens>
+
+        <ContentAdd>
+          <TextInputAdd
+            placeholder="Inserir Item"
+            value={textAdd}
+            returnKeyType="send"
+            onSubmitEditing={() =>
+              handleAdd({
+                descricao: textAdd,
+                posicao: list.length + 1,
+                idEdit: -1,
+              })
+            }
+            onChangeText={setTextAdd}
+          />
+
+          <TouchableOpacity
+            onPress={() =>
+              handleAdd({
+                descricao: textAdd,
+                posicao: list.length + 1,
+                idEdit: -1,
+              })
+            }
+          >
+            <Icon
+              name="add"
+              size={35}
+              color="#fff"
+              style={{
+                borderLeftWidth: 2,
+                borderLeftColor: "#000",
+                //   borderLeftStyle: 'solid',
+              }}
+            />
+          </TouchableOpacity>
+        </ContentAdd>
+
+        {opcoes && (
+          <>
+            <ButtonFloat
+              color="info"
+              icon="check-box-outline-blank"
+              name="Desmarcar"
+              bottom={340}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={async (e) => {
+                if (
+                  await AlertConfirm(
+                    "Desmarcar Lista",
+                    "Irá Desmarcar os Itens Riscados!"
+                  )
+                ) {
+                  await handleEditMarcadoTodos();
+                }
+                setOpcoes(false);
+              }}
+            />
+            <ButtonFloat
+              color="danger"
+              icon="delete"
+              name="Excluir"
+              bottom={270}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={async (e) => {
+                if (
+                  await AlertConfirm(
+                    "Excluir Lista",
+                    "Irá Excluir a Lista Toda!"
+                  )
+                ) {
+                  handleDeleteLista();
+                }
+                setOpcoes(false);
+              }}
+            />
+            <ButtonFloat
+              color="dark"
+              icon="clear"
+              name="Limpar"
+              bottom={200}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={async (e) => {
+                if (
+                  await AlertConfirm(
+                    "Limpar Itens",
+                    "Irá Excluir os Itens Riscados"
+                  )
+                ) {
+                  handleDeleteItens();
+                }
+                setOpcoes(false);
+              }}
+            />
+
+            <ButtonFloat
+              color="success"
+              icon="save"
+              name="Salvar"
+              bottom={130}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={async (e) => {
+                await handleEdit({ id, anotacao: "", list: listAll, title });
+                ws.sendMessage({
+                  data: {
+                    id,
+                    anotacao: "",
+                    list: listAll,
+                    title,
+                    uuid,
+                    image: "",
+                  },
+                  message: "lista",
+                });
+                // console.log(list);
+                StdAlert("Salvo", "Lista Salva");
+                setOpcoes(false);
+              }}
+            />
+          </>
+        )}
+        <ButtonFloat
+          color="info"
+          icon={null}
+          iconf="gear"
+          name="Opçoes"
+          bottom={60}
+          left={10}
+          position="right"
+          onKeyBoardHidden={true}
+          onPress={(e) => {
+            setOpcoes((e) => !e);
+          }}
         />
-      </ScrollItens>
-
-      <ContentAdd>
-        <TextInputAdd
-          placeholder="Inserir Item"
-          value={textAdd}
-          returnKeyType="send"
-          onSubmitEditing={() =>
-            handleAdd({
-              descricao: textAdd,
-              posicao: list.length + 1,
-              idEdit: -1,
-            })
-          }
-          onChangeText={setTextAdd}
-        />
-
-        <TouchableOpacity
-          onPress={() =>
-            handleAdd({
-              descricao: textAdd,
-              posicao: list.length + 1,
-              idEdit: -1,
-            })
-          }
-        >
-          <Icon
-            name="add"
-            size={35}
-            color="#fff"
-            style={{
-              borderLeftWidth: 2,
-              borderLeftColor: "#000",
-              //   borderLeftStyle: 'solid',
-            }}
-          />
-        </TouchableOpacity>
-      </ContentAdd>
-
-      {opcoes && (
-        <>
-          <ButtonFloat
-            color="danger"
-            icon="delete"
-            name="Excluir"
-            bottom={270}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={async (e) => {
-              if (
-                await AlertConfirm("Excluir Lista", "Irá Excluir a Lista Toda!")
-              ) {
-                handleDeleteLista();
-              }
-              setOpcoes(false);
-            }}
-          />
-          <ButtonFloat
-            color="dark"
-            icon="clear"
-            name="Limpar"
-            bottom={200}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={async (e) => {
-              if (
-                await AlertConfirm(
-                  "Limpar Itens",
-                  "Irá Excluir os Itens Riscados"
-                )
-              ) {
-                handleDeleteItens();
-              }
-              setOpcoes(false);
-            }}
-          />
-
-          <ButtonFloat
-            color="success"
-            icon="save"
-            name="Salvar"
-            bottom={130}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={async (e) => {
-              await handleEdit({ id, anotacao: "", list: listAll, title });
-              ws.sendMessage({
-                data: {
-                  id,
-                  anotacao: "",
-                  list: listAll,
-                  title,
-                  uuid,
-                  image: "",
-                },
-                message: "lista",
-              });
-              // console.log(list);
-              StdAlert("Salvo", "Lista Salva");
-              setOpcoes(false);
-            }}
-          />
-        </>
-      )}
-      <ButtonFloat
-        color="info"
-        icon={null}
-        iconf="gear"
-        name="Opçoes"
-        bottom={60}
-        left={10}
-        position="right"
-        onKeyBoardHidden={true}
-        onPress={(e) => {
-          setOpcoes((e) => !e);
-        }}
-      />
+      </KeyboardAvoidingView>
     </Container>
   );
 };

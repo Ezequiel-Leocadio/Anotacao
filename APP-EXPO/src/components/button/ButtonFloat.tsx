@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, Alert, Keyboard, Modal, Text } from "react-native";
+import React, { useState } from "react";
+import { ActivityIndicator, Modal } from "react-native";
 import Icon from "@expo/vector-icons/Ionicons";
 
-import { BodyChil, ButtonFloat, MBody, ModalContent } from "./styles";
+import { ButtonFloat, MBody, ModalContent } from "./styles";
 import Button from "./index";
 
 export default function ButtonFloatC({

@@ -1,15 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import {
-  Container,
-  CheckboxContainer,
-  CheckBox,
-  TextPosition,
-  TextInput,
-} from "./styles";
-import { Alert, Platform, TouchableOpacity } from "react-native";
+import { Container, CheckboxContainer, CheckBox, TextInput } from "./styles";
+import { TouchableOpacity } from "react-native";
 import Icon from "@expo/vector-icons/MaterialIcons";
-import { AlertConfirm, StdAlert } from "../Alert";
+import { AlertConfirm } from "../Alert";
 
 const checkbox = ({
   name,
@@ -22,9 +16,10 @@ const checkbox = ({
   onDelete,
   id,
   onValueChange,
+  onEdit,
   ...rest
 }) => {
-  const ref: any = useRef();
+  const ref: any = useRef(null);
   const [value, setValue] = useState(String(defaultValue));
 
   useEffect(() => {
@@ -74,7 +69,7 @@ const checkbox = ({
           </TextInput>
         </TouchableOpacity>
 
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={async () => {
             if (await AlertConfirm("Excluir Item", "")) {
               onDelete();
@@ -82,6 +77,16 @@ const checkbox = ({
           }}
         >
           <Icon name="delete" size={25} color="#fff" />
+        </TouchableOpacity> */}
+
+        <TouchableOpacity
+          onPress={async () => {
+            // if (await AlertConfirm("Editar Item", "")) {
+            // }
+            onEdit();
+          }}
+        >
+          <Icon name="edit" size={25} color="#fff" />
         </TouchableOpacity>
       </CheckboxContainer>
     </Container>

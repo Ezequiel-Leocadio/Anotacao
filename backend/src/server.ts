@@ -88,7 +88,7 @@ io.sockets.on("connection", (socket) => {
       const dataf = JSON.parse(data);
       // console.log(dataf.title);
       const sincronizar = new SincronizarController();
-      const edit = await sincronizar.edit(dataf.data);
+      // const edit = await sincronizar.edit(dataf.data);
       // console.log(edit);
       for await (const u of sockets) {
         const uu: any = u;
@@ -110,7 +110,7 @@ process.on("unhandledRejection", (err) => {
   console.error(`unhandledRejection ${err}`);
 });
 
-const port = 3131;
+const port = 2222;
 server.listen(port, () => {
   console.log("Server is Running " + port);
 });
