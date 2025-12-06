@@ -4,6 +4,7 @@ import { ListaService } from "../services/ListaService";
 
 import fs from "fs";
 import path from "path";
+import { SementesController } from "./SementesController";
 
 class SincronizarController {
   async inserirImage(req: Request, res: Response) {
@@ -117,7 +118,7 @@ class SincronizarController {
 
       for await (const f of list) {
         // console.log(f);
-        const { id_nota, posicao, descricao, id, marcado, delet } = f;
+        const { id_nota, posicao, descricao, id, marcado, delet, secao } = f;
         let idI = id;
         const find = await serviceList.find({ id, id_nota });
         if (find) {
@@ -127,6 +128,7 @@ class SincronizarController {
             posicao,
             id,
             marcado,
+            secao,
           });
         } else {
           const insert = await serviceList.create({
@@ -135,6 +137,7 @@ class SincronizarController {
             posicao,
             id,
             marcado,
+            secao,
           });
 
           if (insert) {
@@ -164,7 +167,7 @@ class SincronizarController {
   }
 
   async sinconizar(req: Request, res: Response) {
-    const { itens, date, itensGet } = req.body;
+    const { itens, date, itensGet, sementes } = req.body;
     // const { id: user }: any = req.user;
     // const datef = itensGet > 0 ? date : null;
     const datef = null;
@@ -186,7 +189,7 @@ class SincronizarController {
       `bkpsincronizar${datee.getTime()}.json`
     );
 
-    console.log(filePath);
+    // console.log(filePath);
 
     // Escrever o arquivo JSON
     await fs.writeFileSync(filePath, JSON.stringify(itens, null, 2), "utf8");
@@ -255,7 +258,7 @@ class SincronizarController {
 
       for await (const f of list) {
         // console.log(f);
-        const { id_nota, posicao, descricao, id, marcado, delet } = f;
+        const { id_nota, posicao, descricao, id, marcado, delet, secao } = f;
         let idI = id;
         const find = await serviceList.find({ id, id_nota });
         if (find) {
@@ -268,6 +271,7 @@ class SincronizarController {
               posicao,
               id,
               marcado,
+              secao,
             });
           }
         } else {
@@ -277,6 +281,7 @@ class SincronizarController {
             posicao,
             id,
             marcado,
+            secao,
           });
 
           if (insert) {
@@ -293,12 +298,26 @@ class SincronizarController {
       edit: false,
     }));
 
+    const sementesControlller = new SementesController();
+    if (sementes) {
+      // console.log(sementes);
+      const inserirEditar = await sementesControlller.inserirEditar(
+        sementes.sementes,
+        sementes.plantios
+      );
+    }
+
+    const semente = await sementesControlller.listar();
+
+    const secoes = await serviceList.secao();
     // console.log(nota[0]);
 
     return res.json({
       success: true,
       message: "Sincronizado",
       data: data,
+      sementes: semente,
+      secoes,
       date: new Date(),
     });
   }
@@ -359,7 +378,7 @@ class SincronizarController {
     }
 
     for await (const f of list) {
-      const { id_nota, posicao, descricao, id, marcado, delet } = f;
+      const { id_nota, posicao, descricao, id, marcado, delet, secao } = f;
       let idI = id;
       const find = await serviceList.find({ id, id_nota });
       if (find) {
@@ -369,6 +388,7 @@ class SincronizarController {
           posicao,
           id,
           marcado,
+          secao,
         });
       } else {
         const insert = await serviceList.create({
@@ -377,6 +397,7 @@ class SincronizarController {
           posicao,
           id,
           marcado,
+          secao,
         });
 
         if (insert) {

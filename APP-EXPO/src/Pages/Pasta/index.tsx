@@ -1,5 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Alert, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import ButtonFloatC from "../../components/button/ButtonFloat";
 import ButtonFloat from "../../components/button/Float";
@@ -280,60 +286,70 @@ function Pasta({ navigation, route }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <Container>
-        {!loading && (
-          <>
-            {itens.map((e) => (
-              <NotasContente key={String(e.id)} onPress={() => handleRoute(e)}>
-                <Icon name={e.icon} size={35} color="#fff" />
-                <NotaTitle>{e.title}</NotaTitle>
-                <Icon name="drag-handle" size={35} color="#fff" />
-              </NotasContente>
-            ))}
-          </>
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={115}
+        behavior={Platform.OS === "ios" ? "padding" : "height"} // ou "height"
+        style={[{ flex: 1 }]}
+      >
+        <Container>
+          {!loading && (
+            <>
+              {itens.map((e) => (
+                <NotasContente
+                  key={String(e.id)}
+                  onPress={() => handleRoute(e)}
+                >
+                  <Icon name={e.icon} size={35} color="#fff" />
+                  <NotaTitle>{e.title}</NotaTitle>
+                  <Icon name="drag-handle" size={35} color="#fff" />
+                </NotasContente>
+              ))}
+            </>
+          )}
+
+          <InputModal
+            modalVisible={modalEdit}
+            title="Editar Título Pasta"
+            buttonOneTitle="..."
+            onRequestClose={() => setModalEdit(false)}
+            onPressOne={async (title) => {
+              //   setModalVisible(false);
+              //   validatePasswordEtc();
+
+              handleEditTitle(title);
+            }}
+            defaultValue={title}
+            placeholder="..."
+          />
+
+          <InputModal
+            modalVisible={modalVisible}
+            title="Informe um Título"
+            buttonOneTitle="..."
+            onRequestClose={() => setModalVisible(false)}
+            onPressOne={async (title) => {
+              //   setModalVisible(false);
+              //   validatePasswordEtc();
+
+              handleAdd({ iten: itenAdd, title });
+            }}
+            placeholder="..."
+          />
+        </Container>
+
+        {search && (
+          <TextInput
+            ref={refSearch}
+            placeholder="Pesquisar, Titulo ou Código"
+            value={textSearch}
+            onChangeText={handleSearch}
+            onSubmitEditing={handleSearchId}
+          />
         )}
 
-        <InputModal
-          modalVisible={modalEdit}
-          title="Editar Título Pasta"
-          buttonOneTitle="..."
-          onRequestClose={() => setModalEdit(false)}
-          onPressOne={async (title) => {
-            //   setModalVisible(false);
-            //   validatePasswordEtc();
-
-            handleEditTitle(title);
-          }}
-          defaultValue={title}
-          placeholder="..."
-        />
-
-        <InputModal
-          modalVisible={modalVisible}
-          title="Informe um Título"
-          buttonOneTitle="..."
-          onRequestClose={() => setModalVisible(false)}
-          onPressOne={async (title) => {
-            //   setModalVisible(false);
-            //   validatePasswordEtc();
-
-            handleAdd({ iten: itenAdd, title });
-          }}
-          placeholder="..."
-        />
-      </Container>
-      {search && (
-        <TextInput
-          ref={refSearch}
-          placeholder="Pesquisar, Titulo ou Código"
-          value={textSearch}
-          onChangeText={handleSearch}
-          onSubmitEditing={handleSearchId}
-        />
-      )}
-      {id === 0 ? (
-        <>
-          {/* <ButtonFloat
+        {id === 0 ? (
+          <>
+            {/* <ButtonFloat
             color="info"
             icon="picture-as-pdf"
             bottom={170}
@@ -344,72 +360,73 @@ function Pasta({ navigation, route }) {
               navigation.navigate("PDF");
             }}
           /> */}
-          <ButtonFloat
-            color="warning"
-            icon="search"
-            name="Buscar"
-            bottom={100}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={(e) => {
-              setSearch((e) => !e);
-              setTimeout(() => {
-                if (refSearch.current) {
-                  refSearch.current.focus();
+            <ButtonFloat
+              color="warning"
+              icon="search"
+              name="Buscar"
+              bottom={100}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={(e) => {
+                setSearch((e) => !e);
+                setTimeout(() => {
+                  if (refSearch.current) {
+                    refSearch.current.focus();
+                  }
+                }, 10);
+              }}
+            />
+          </>
+        ) : (
+          <>
+            <ButtonFloat
+              color="danger"
+              icon="delete"
+              name="Excluir"
+              bottom={160}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={async () => {
+                if (
+                  await AlertConfirm(
+                    "Excluir Pasta",
+                    "Irá Excluir a Pasta  e Tudo que Está Nela!"
+                  )
+                ) {
+                  handleDelete();
                 }
-              }, 10);
-            }}
-          />
-        </>
-      ) : (
-        <>
-          <ButtonFloat
-            color="danger"
-            icon="delete"
-            name="Excluir"
-            bottom={160}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={async () => {
-              if (
-                await AlertConfirm(
-                  "Excluir Pasta",
-                  "Irá Excluir a Pasta  e Tudo que Está Nela!"
-                )
-              ) {
-                handleDelete();
-              }
-            }}
-          />
+              }}
+            />
 
-          <ButtonFloat
-            color="info"
-            icon="edit"
-            name="Editar"
-            bottom={90}
-            left={10}
-            position="right"
-            onKeyBoardHidden={true}
-            onPress={() => {
-              setModalEdit(true);
-            }}
-          />
-        </>
-      )}
+            <ButtonFloat
+              color="info"
+              icon="edit"
+              name="Editar"
+              bottom={90}
+              left={10}
+              position="right"
+              onKeyBoardHidden={true}
+              onPress={() => {
+                setModalEdit(true);
+              }}
+            />
+          </>
+        )}
 
-      <ButtonFloatC
-        color="success"
-        icon="add"
-        bottom={20}
-        position="right"
-        onKeyBoardHidden={true}
-        onEvent={(e) => {
-          setItenAdd(e);
-          setModalVisible(true);
-        }}
-      />
+        <ButtonFloatC
+          color="success"
+          icon="add"
+          bottom={20}
+          position="right"
+          onKeyBoardHidden={true}
+          onEvent={(e) => {
+            setItenAdd(e);
+            setModalVisible(true);
+          }}
+        />
+      </KeyboardAvoidingView>
     </View>
   );
 }

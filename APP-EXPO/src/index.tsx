@@ -14,11 +14,10 @@ const Index = () => {
 
   return (
     <WebSocketProvider>
-      <StatusBar style="light" />
-
       {/* <KeepAwake /> */}
 
       <App />
+      <StatusBar style="light" translucent={false} backgroundColor="#2e2d2d" />
     </WebSocketProvider>
   );
 };

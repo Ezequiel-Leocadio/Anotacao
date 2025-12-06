@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 import Index from "./src/index";
 
 export default function App() {
-  return <Index />;
+  // return <Index />;
   return (
     <View style={styles.container}>
       <Text>Open up App.js to start working on your app!</Text>

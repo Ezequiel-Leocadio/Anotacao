@@ -146,7 +146,7 @@ const App = ({ navigation, route }) => {
     }, 5);
   }
 
-  async function handleEditDescricao(descricao, idEdit) {
+  async function handleEditDescricao(descricao, itenEdit) {
     // setLoading(true);
     const i: any = list;
 
@@ -154,10 +154,13 @@ const App = ({ navigation, route }) => {
     const index = itensGet.findIndex((f) => f.id === id);
 
     if (index >= 0) {
-      const indexEdit = i.findIndex((f) => f.id === idEdit);
+      const indexEdit = i.findIndex((f) => f.id === itenEdit.id);
 
       if (indexEdit >= 0) {
         i[indexEdit].descricao = descricao;
+        i[indexEdit].secao = itenEdit.secao;
+        i[indexEdit].desc_secao = itenEdit.desc_secao;
+
         itensGet[index].list = i;
         itensGet[index].edit = true;
         const listf = i.filter((f) => !f.delet);

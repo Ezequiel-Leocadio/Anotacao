@@ -1,0 +1,15 @@
+[
+  {
+    "id": "fe878894-42f5-4715-a23c-208f8d0b0ff7",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "Ar Condicionado termal",
+    "id_nivel": "48",
+    "list": [],
+    "edit": true,
+    "uuid": "fe878894-42f5-4715-a23c-208f8d0b0ff7",
+    "existe": false,
+    "image": null,
+    "anotacao": "Ar-condicionado natural (usando solo), \n\nque aproveitam o calor ou a temperatura do solo para resfriar/aquecer um ambiente de forma mais sustentável. "
+  }
+]

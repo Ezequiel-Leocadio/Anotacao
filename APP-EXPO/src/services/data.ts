@@ -1,6 +1,29 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import jwtDecode from "jwt-decode";
 
+export async function getAsyncStorageSize() {
+  const keys = await AsyncStorage.getAllKeys();
+  const stores = await AsyncStorage.multiGet(keys);
+
+  let totalBytes = 0;
+
+  stores.forEach(([key, value]) => {
+    if (value) {
+      totalBytes += key.length + value.length;
+    }
+  });
+
+  const totalKB = totalBytes / 1024;
+  const totalMB = totalKB / 1024;
+
+  return {
+    keys: keys.length,
+    totalBytes,
+    totalKB: Number(totalKB.toFixed(2)),
+    totalMB: Number(totalMB.toFixed(2)),
+  };
+}
+
 export const storeData = async ({ value, tipo }) => {
   try {
     await AsyncStorage.setItem("@nota_storage_Key_" + tipo, value);
@@ -11,6 +34,9 @@ export const storeData = async ({ value, tipo }) => {
 
 export const getStoreData = async ({ tipo }) => {
   try {
+    // const info = await getAsyncStorageSize();
+    // console.log(info);
+
     const value = await AsyncStorage.getItem("@nota_storage_Key_" + tipo);
     if (value !== null) {
       return JSON.parse(value);

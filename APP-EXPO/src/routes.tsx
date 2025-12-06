@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, View } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Icon from "@expo/vector-icons/MaterialIcons";
+import FontAwesome5 from "@expo/vector-icons/FontAwesome5";
 import Note from "./Pages/Note";
 import Lista from "./Pages/Lista";
 import Pasta from "./Pages/Pasta";
@@ -12,6 +12,12 @@ import PDF from "./Pages/PDF";
 // import Login from "./Pages/User/login";
 // import Perfil from "./Pages/User/user";
 import { ContentApp } from "./styles";
+import Sementes from "./Pages/Sementes";
+import Plantios from "./Pages/Sementes/plantios";
+import SementesArmazenamento from "./Pages/Sementes/sementes";
+import SementesArmazenamentoForm from "./Pages/Sementes/sementesForm";
+import PlantioForm from "./Pages/Sementes/plantiosForm";
+import ArmazenamentoForm from "./Pages/Sementes/armazenamentoForm";
 
 const HomeStack = createNativeStackNavigator();
 
@@ -19,7 +25,9 @@ const screenOptions: any = {
   headerStyle: {
     backgroundColor: "#2e2d2d",
   },
+
   headerTintColor: "#fff",
+
   headerTitleStyle: {
     fontWeight: "bold",
   },
@@ -77,6 +85,35 @@ function PdfScreen() {
   );
 }
 
+const SementeStack = createNativeStackNavigator();
+
+function SementeScreen() {
+  return (
+    <SementeStack.Navigator
+      screenOptions={{
+        ...screenOptions,
+      }}
+    >
+      <SementeStack.Screen name="Sementes" component={Sementes} />
+      <SementeStack.Screen
+        name="SementesArmazenamento"
+        component={SementesArmazenamento}
+      />
+      <SementeStack.Screen
+        name="SementesArmazenamentoForm"
+        component={SementesArmazenamentoForm}
+      />
+      <SementeStack.Screen name="PlantioForm" component={PlantioForm} />
+      <SementeStack.Screen
+        name="ArmazenamentoForm"
+        component={ArmazenamentoForm}
+      />
+
+      <SementeStack.Screen name="Plantios" component={Plantios} />
+    </SementeStack.Navigator>
+  );
+}
+
 const Tab = createBottomTabNavigator();
 
 export default function Index() {
@@ -108,9 +145,12 @@ export default function Index() {
                 iconName = "picture-as-pdf";
               } else if (route.name === "Avisos.") {
                 iconName = "notifications";
+              } else if (route.name === "Sementes.") {
+                return (
+                  <FontAwesome5 name="seedling" size={size} color={color} />
+                );
               }
 
-              // You can return any component that you like here!
               return <Icon name={iconName} size={size} color={color} />;
             },
             tabBarActiveTintColor: "#18b6ff",
@@ -119,6 +159,7 @@ export default function Index() {
         >
           <Tab.Screen name="Sincronizar." component={SincronizarScreen} />
           <Tab.Screen name="Notas." component={HomeStackScreen} />
+          <Tab.Screen name="Sementes." component={SementeScreen} />
           <Tab.Screen name="PDF." component={PdfScreen} />
         </Tab.Navigator>
       </NavigationContainer>

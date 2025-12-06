@@ -1,0 +1,26 @@
+[
+  {
+    "id": "f96e980f-9c38-44b2-9742-ddbdd5a7b271",
+    "tipo": "pasta",
+    "icon": "folder",
+    "title": "Cremes",
+    "id_nivel": "8",
+    "list": [],
+    "edit": true,
+    "uuid": "f96e980f-9c38-44b2-9742-ddbdd5a7b271",
+    "existe": false
+  },
+  {
+    "id": "8af78366-bbbf-4433-891f-717762c20823",
+    "tipo": "receita",
+    "icon": "fastfood",
+    "title": "Creme de Milho ",
+    "id_nivel": "f96e980f-9c38-44b2-9742-ddbdd5a7b271",
+    "list": [],
+    "edit": true,
+    "uuid": "8af78366-bbbf-4433-891f-717762c20823",
+    "existe": false,
+    "image": null,
+    "anotacao": "1 lata de milho\n1 e 1/2 xícara (chá) de leite\n1 colher (sopa) de manteiga\n1 cebola média ralada\n1 tablete de caldo de legumes\n1 lata de creme de leite\n2 colheres (sopa) de farinha de trigo\n\n\n\nModo de preparo \n\nNo liquidificador, bata o milho e o leite e reserve.\n\nEm uma panela, aqueça a manteiga, junte a cebola e refogue um pouco.\n\nAdicione a farinha de trigo e mexa rapidamente.\n\nDeixe dourar e misture o milho batido com o leite ao caldo.\n\nMexa até dissolvê-lo completamente e cozinhe por cerca de 10 minutos, até obter uma consistência cremosa.\n\nAcrescente o creme de leite, mexa e desligue o fogo."
+  }
+]

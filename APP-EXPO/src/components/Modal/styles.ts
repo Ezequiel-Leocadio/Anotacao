@@ -38,6 +38,36 @@ export const ModalContent: any = styled.TouchableOpacity`
   margin-top: 30px;
 `;
 
+export const ModalContentFull: any = styled.View`
+  width: 100%;
+  max-width: 500px;
+  height: 90%;
+  margin: 0 auto;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+export const ModalView = styled.ScrollView`
+  /* justify-content: space-around; */
+  /* align-items: center; */
+  width: 90%;
+
+  height: 90%;
+  background-color: #615c5c;
+  border-radius: 10px;
+  padding: 10px;
+  /* 
+  // paddingTop: 10,
+  shadow-color: #000;
+  shadow-offset: {
+    width: 0;
+    height: 4;
+  }
+  shadow-opacity: 0.55;
+  shadow-radius: 8; */
+  elevation: 20;
+`;
+
 const customModalStyles = StyleSheet.create({
   buttonsContainer: {
     flexDirection: "row",

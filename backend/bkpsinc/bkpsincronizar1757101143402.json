@@ -1,0 +1,105 @@
+[
+  {
+    "title": "Contas",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "1b330d05-a2df-4ba3-8687-dad2518edbe7",
+    "existe": 1,
+    "codigo": 91,
+    "id": "91",
+    "list": [
+      {
+        "id": 100,
+        "id_nota": "91",
+        "posicao": 3,
+        "descricao": "Aluguel kit net",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-04-29T21:00:19.000Z",
+        "marcado": 1,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 103,
+        "id_nota": "91",
+        "posicao": 6,
+        "descricao": "Cartão nubank",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": true,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 104,
+        "id_nota": "91",
+        "posicao": 7,
+        "descricao": "Cartão Santander ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": true,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 105,
+        "id_nota": "91",
+        "posicao": 8,
+        "descricao": "Dinheiro mãe ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": true,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 98,
+        "id_nota": "91",
+        "posicao": 1,
+        "descricao": "Energia kitnet ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": 0,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 99,
+        "id_nota": "91",
+        "posicao": 2,
+        "descricao": "Energia sitio",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": 0,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 102,
+        "id_nota": "91",
+        "posicao": 5,
+        "descricao": "Internet",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": true,
+        "secao": null,
+        "desc_secao": null
+      },
+      {
+        "id": 101,
+        "id_nota": "91",
+        "posicao": 4,
+        "descricao": "Netflix",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-09-03T17:42:53.000Z",
+        "marcado": true,
+        "secao": null,
+        "desc_secao": null
+      }
+    ],
+    "edit": true
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "688b5821-9c25-4310-86b6-cc305329f684",
+    "tipo": "pasta",
+    "icon": "folder",
+    "title": "Turismo rural ",
+    "id_nivel": "29",
+    "list": [],
+    "edit": true,
+    "uuid": "688b5821-9c25-4310-86b6-cc305329f684",
+    "existe": false
+  },
+  {
+    "id": "63f84784-aee5-4678-8d67-922402eed6f4",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "Ideias para o turismo rural",
+    "id_nivel": "688b5821-9c25-4310-86b6-cc305329f684",
+    "list": [],
+    "edit": true,
+    "uuid": "63f84784-aee5-4678-8d67-922402eed6f4",
+    "existe": false,
+    "image": null,
+    "anotacao": "Cronograma com\n\nPesquiro \n\nTrilha na mata \nNa trilha ter paralelepípedo, lugares com bancos e animais \nNa trilha caminho entre árvore com cordas ,e tbm lugares pra deitar nessas cordas \nNa trilha ter pequenas pontes suspensas ou áreas suspensas do chão com madeiras e tábuas \n\nPasseio  em horta pomar de frutas jardim com gramas "
+  }
+]

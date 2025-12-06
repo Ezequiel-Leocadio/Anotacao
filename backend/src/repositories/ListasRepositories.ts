@@ -8,20 +8,27 @@ class ListasRepositories extends Repository<Listas> {
     let sql = "";
     if (date) {
       sql = `
-        select * from listas a 
+        select a.*, b.descricao as desc_secao from listas a 
+        left join secao b on a.secao = b.id
         where 
             a.updatedAt > '${formatDateTimeUsa(date)}' 
         order by
-            a.posicao desc   
+            b.posicao desc   
         `;
     } else {
       sql = `
-        select * from listas a 
+        select a.*, b.descricao as desc_secao from listas a 
+          left join secao b on a.secao = b.id
         order by
-            a.descricao asc   
+            b.descricao asc   
         `;
     }
 
+    return this.query(sql);
+  }
+
+  async secao() {
+    const sql = "select a.id as value, a.descricao as label from secao a";
     return this.query(sql);
   }
 }

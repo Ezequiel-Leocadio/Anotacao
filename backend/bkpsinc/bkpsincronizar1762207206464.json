@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Piso queimado ",
+    "id_nivel": "82",
+    "anotacao": "Cola branca PVA\nCera líquida incolor \n\n\n\npiso com argamassa \nprimeira de mão \n5 de agua \n2 de argamassa ac3\n250ml de cola branca \n1 de cimento \n\nsegunda de mão \n4 de agua \n2 de argamassa ac3\n250ml de cola branca \n1 de cimento ",
+    "tipo": "nota",
+    "icon": "edit",
+    "image": null,
+    "uuid": "57179e80-080c-4c58-9a5c-fcf8a34643ac",
+    "existe": 1,
+    "codigo": 184,
+    "id": "57179e80-080c-4c58-9a5c-fcf8a34643ac",
+    "list": [],
+    "edit": true
+  },
+  {
+    "id": "390fb6c5-90d4-49c4-b5c4-b260f898ccfe",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "Antialérgico picada de insetos ",
+    "id_nivel": "23989ce2-04a9-4677-96a0-68ae7751ac70",
+    "list": [],
+    "edit": true,
+    "uuid": "390fb6c5-90d4-49c4-b5c4-b260f898ccfe",
+    "existe": false,
+    "image": null,
+    "anotacao": "o alcaçuz pode ajudar a aliviar os sintomas de alergia e inflamação causados por picadas de insetos devido às suas potentes propriedades anti-inflamatórias e calmantes para a pele. \n\nO extrato de alcaçuz, que contém o composto ativo glicirrizina, é tradicionalmente usado na medicina herbal para tratar erupções cutâneas, dermatites, eczemas, prurido (coceira) e inchaço. \n\nComo o alcaçuz pode ajudar:\nAção Anti-inflamatória: A glicirrizina presente no alcaçuz possui efeitos anti-inflamatórios que podem reduzir o eritema (vermelhidão) e o edema (inchaço) no local da picada.\nAlívio da Coceira: Estudos demonstraram que a aplicação tópica de gel ou extrato de alcaçuz pode diminuir significativamente a sensação de coceira (prurido) associada a reações cutâneas.\nPropriedades Antialérgicas: Algumas pesquisas indicam que certas plantas, incluindo o alcaçuz, podem inibir a libertação de histamina, uma das principais substâncias envolvidas nas reações alérgicas. \n\nFormas de Uso Tópico:\nEmbora os resultados de pesquisas se refiram a extratos padronizados, na medicina natural, o alcaçuz pode ser usado das seguintes formas na pele, para alívio de picadas: \n\nCompressa com Chá: Pode-se preparar um chá com a raiz de alcaçuz e, após esfriar, aplicar uma compressa no local da picada.\nProdutos Tópicos: Existem cremes, géis e pomadas comerciais que contêm extrato de alcaçuz, formulados especificamente para acalmar a pele irritada e alérgica. "
+  },
+  {
+    "id": "34f8a316-7f74-45de-bdf3-f22bcb3be3d6",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "Parede bonita sem reboco",
+    "id_nivel": "82",
+    "list": [],
+    "edit": true,
+    "uuid": "34f8a316-7f74-45de-bdf3-f22bcb3be3d6",
+    "existe": false,
+    "image": null,
+    "anotacao": "com argamassa\n4 litros de agua \n argamassa branca ac2 ou ac3 branca \ncorante da cor desejada \n\n\ncom gesso "
+  }
+]

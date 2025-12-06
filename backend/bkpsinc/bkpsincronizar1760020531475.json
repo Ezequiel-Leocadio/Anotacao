@@ -1,0 +1,58 @@
+[
+  {
+    "title": "Candidatos conselho",
+    "id_nivel": "73",
+    "anotacao": "1 expandindo mundos (Luciano e Gustavo)\n2 horta do preto + -\n3 Chico abelha \n4 drlucasfmattos + -\n5 Diogo Ribeiro silva (Beré) itagi Bahia\n6 dr Vinicius costas + -",
+    "tipo": "nota",
+    "icon": "edit",
+    "image": null,
+    "uuid": "3d5ac9be-cf67-48f8-83b9-6f395ee16f25",
+    "existe": 1,
+    "codigo": 74,
+    "id": "74",
+    "list": [],
+    "edit": true
+  },
+  {
+    "title": "Candidatos normal ",
+    "id_nivel": "73",
+    "anotacao": "\n",
+    "tipo": "nota",
+    "icon": "edit",
+    "image": null,
+    "uuid": "cc9a8570-7a7b-4847-94dd-04b33c5b1e78",
+    "existe": 1,
+    "codigo": 75,
+    "id": "75",
+    "list": [],
+    "edit": true
+  },
+  {
+    "title": "Cappuccino",
+    "id_nivel": "118",
+    "anotacao": "200g de leite em pó \n3 colheres de chocolate em pó 100%\n25g de café solúvel \n5g de  bicarbonato\n1 colher canela em pó \n1/2 xicara de açúcar \n150g chocolate ralado",
+    "tipo": "receita",
+    "icon": "fastfood",
+    "image": null,
+    "uuid": "deced322-1cd2-466b-acf7-06cc36646f71",
+    "existe": 1,
+    "codigo": 115,
+    "id": "115",
+    "list": [],
+    "edit": true
+  },
+  {
+    "title": "Óleo correia dentada ",
+    "id_nivel": "22",
+    "anotacao": "20W-50 esta usando esse\n\n15W40 usar esse se estiver 100% da saúde \n\nCorreia dentada \nkm trocada 186.572\n\nÓleo troca em 25/04/2025 \nkm 191.572\nTrocar em km 196.572",
+    "tipo": "nota",
+    "icon": "edit",
+    "image": null,
+    "uuid": "01f6c491-263d-484c-9b84-0332bd9da15e",
+    "existe": 1,
+    "codigo": 190,
+    "id": "01f6c491-263d-484c-9b84-0332bd9da15e",
+    "list": [],
+    "edit": true
+  }
+]

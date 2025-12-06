@@ -1,0 +1,28 @@
+[
+  {
+    "id": "86557ac5-8e07-4537-8236-e1dfb82d5895",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "Biofertilizante  Epagri",
+    "id_nivel": "43896f21-c552-4d60-a410-538cd9a85e41",
+    "list": [],
+    "edit": true,
+    "uuid": "86557ac5-8e07-4537-8236-e1dfb82d5895",
+    "existe": false,
+    "image": null,
+    "anotacao": "Receita Epagri\n\nPara 100 litros de biofertilizante, utilizam-se:\n- 94 litros de água;\n- 1kg de farinha de peixe (ou casca de camarão seca e moída);\n- 1kg de matéria orgânica (ou composto ou esterco ou  serapilheira);\n- 2kg de farelo de arroz (ou farelo de trigo);\n- 0,5kg de amido de milho; \n- 1kg de açúcar ou melado;\n- 0,5kg de amido de mandioca\n\n A) O primeiro passo, que é o mais IMPORTANTE, é peneirar todos os insumos só\nlidos, inclusive os solúveis (ex.: açúcar), com peneira de malha para “areia de reboco” \n(Figura 22), evitando desta maneira o entupimento do sistema.\n\nB) O tanque de fermentação (bombona) deve ser abastecido com, no máximo, 50% \nde sua capacidade. Volumes superiores diminuem a capacidade de oxigenação\n\n C) Modo de preparo: coloque a água e ligue a UPPB. Despeje todos os ingredientes \nna bombona e mantenha sob agitação contínua até que todos os ingredientes se mistu\nrem na água, o que demora de 30 a 50 minutos em média. A partir deste momento, a \nunidade de fermentação, por meio da conexão da bomba, será ligada ao timer (Figura 24), \no qual, por sua vez, está conectado à energia elétrica. \n\nD) Bombear oxigênio por 6 a 8 dias durante as 24 horas. Com o “timer” analógico \n(Figura 24), programam-se intervalos de agitação/repouso de 15/15 minutos ou 15/30 \nminutos\n\n IMPORTANTE: O biofertilizante aeróbico não permite armazenamento. Deve ser \nutilizado, preferencialmente, no momento em que estiver pronto (entre o sexto e o oitavo \ndia) e, no máximo, até o décimo segundo dia, mantendo sempre o sistema oxigenado."
+  },
+  {
+    "id": "f8ca554f-c172-448c-8d9b-cad9c578ba57",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "Biofertilizante  (Ser Rural)",
+    "id_nivel": "43896f21-c552-4d60-a410-538cd9a85e41",
+    "list": [],
+    "edit": true,
+    "uuid": "f8ca554f-c172-448c-8d9b-cad9c578ba57",
+    "existe": false,
+    "image": null,
+    "anotacao": "\nPara 100 litros de biofertilizante, utilizam-se:\n - 94 litros de água;\n - 1,5kg de materia organica da floresta que fica em cima da terra (ou composto ou esterco ou  serapilheira);\n - 0,5kg de compoto organico da composteira se tiver (Opcional);\n - 0,5kg de carvao cinzas;\n - 0,5kg de amido de milho pode ser fuba se nao tiver; \n - 1kg de açúcar ou melado;\n - 0,5kg de amido de mandioca.\n\nas materias organicas devem ser colocadas dentro de sacos para a bomba d'agua nao entupir \n\n15 minutos ligado e 30 minutos desligado vai ficar de 6 a 8 dias\n\nnao pode ficar com cheiro ruim \nquando a calda estiver boa teve estar com cheiro parecido de pao fermentado "
+  }
+]

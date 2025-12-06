@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Bolo Normal",
+    "id_nivel": "9",
+    "anotacao": "2 ovos\n1 xicara de chá de leite 240ml\nmetade de um limão\n1 e 1/2 xicara de açúcar \n1 colher de chá de sal\n1/2 xicara de óleo\n2 xicara de farinha de trigo\n1 colher sapo de fermento\n",
+    "tipo": "excluido",
+    "icon": "fastfood",
+    "image": null,
+    "uuid": "5fcfa10b-7efc-4e2b-941d-54b5cf69a146",
+    "existe": 1,
+    "codigo": 171,
+    "id": "5fcfa10b-7efc-4e2b-941d-54b5cf69a146",
+    "list": [],
+    "edit": true
+  }
+]

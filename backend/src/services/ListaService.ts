@@ -7,20 +7,32 @@ interface IListaRequest {
   posicao: number;
   marcado: any;
   descricao: string;
+  secao: number;
 }
 
 class ListaService {
-  async create({ id_nota, posicao, descricao, marcado, id }: IListaRequest) {
+  async create({ id_nota, posicao, descricao, marcado, secao }: IListaRequest) {
     const repositories = getCustomRepository(ListasRepositories);
     let marcadof = false;
     if (marcado || Number(marcado) === 1) {
       marcadof = true;
+    }
+
+    const find = await repositories.findOne({
+      where: {
+        descricao: Like(`${descricao}`),
+      },
+    });
+    let secaof = secao;
+    if (find) {
+      secaof = find.secao;
     }
     const create = repositories.create({
       id_nota,
       posicao,
       descricao,
       marcado: marcadof,
+      secao: secaof,
     });
 
     await repositories.save(create);
@@ -28,7 +40,14 @@ class ListaService {
     return create;
   }
 
-  async update({ id_nota, posicao, descricao, id, marcado }: IListaRequest) {
+  async update({
+    id_nota,
+    posicao,
+    descricao,
+    id,
+    marcado,
+    secao,
+  }: IListaRequest) {
     const repositories = getCustomRepository(ListasRepositories);
 
     const find = await repositories.findOne({ id, id_nota });
@@ -46,6 +65,7 @@ class ListaService {
       id_nota,
       posicao,
       descricao,
+      secao,
       marcado: marcadof,
     };
 
@@ -111,6 +131,12 @@ class ListaService {
     await repositories.remove(find);
 
     return find;
+  }
+
+  async secao() {
+    const repositories = getCustomRepository(ListasRepositories);
+
+    return await repositories.secao();
   }
 }
 export { ListaService };

@@ -1,0 +1,30 @@
+[
+  {
+    "title": "Batata Frita",
+    "id_nivel": "8",
+    "anotacao": "30g de Bicarbonato de Sódio para cada 5 KG de Batata\n1 copo americano de vinagre \n\nCubra de agua \n\nDeixe descansar por 30 minutos \nEscorra e coloque para congelar \n\nDepois só fritar \n",
+    "tipo": "receita",
+    "icon": "fastfood",
+    "image": null,
+    "uuid": "c607a1f1-0065-422f-a86c-24cbbaf6adc7",
+    "existe": 1,
+    "codigo": 54,
+    "id": "54",
+    "list": [],
+    "edit": true
+  },
+  {
+    "title": "Sementeira ",
+    "id_nivel": "29",
+    "anotacao": "Lado início carro \n\nPequena \nPimenta quital \n2 Jilo cumprido \n2 Pimenta de cheiro \n2 couve\n2 salsinha \n2 rúcula \n2 jilo redondo \n2 tomate cereja \n1 tomate salada \n4 alface \n\nGrande \nGraviola \n2 Limão rosa \n2 maracujá \n4 mamão gilson \n\n\nCopos\n1 Ceringuela \n1 Pinha \n1 Berimba\n2 Limão rosa \n2 Acerola amarelo \n2 berinjela \n1 bocaiuva ",
+    "tipo": "nota",
+    "icon": "edit",
+    "image": null,
+    "uuid": "70716242-8ae0-4637-b2a6-61c04105bc6a",
+    "existe": 1,
+    "codigo": 192,
+    "id": "70716242-8ae0-4637-b2a6-61c04105bc6a",
+    "list": [],
+    "edit": true
+  }
+]

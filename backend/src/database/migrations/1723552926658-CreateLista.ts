@@ -28,6 +28,11 @@ export class CreateLista1723552926658 implements MigrationInterface {
             name: "descricao",
             type: "text",
           },
+          {
+            name: "secao",
+            type: "integer",
+            isNullable: true,
+          },
 
           {
             name: "marcado",

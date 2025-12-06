@@ -1,0 +1,16 @@
+[
+  {
+    "title": "Pão de queijo",
+    "id_nivel": "17",
+    "anotacao": "100ml de óleo \n150ml de leite\n150ml de agua \n500g de polvilho azedo\n1 colher de sal\n2 ovos \n300g de queijo ralado\n\ncoloque o polvilho na vasilha e o sal \n\nferva o óleo, agua e o leite para escaldar \n\nescalde e quando a massa estiver fria acrescente os ovos e depois de sovar coloque o queijo ",
+    "tipo": "receita",
+    "icon": "fastfood",
+    "image": null,
+    "uuid": "49f42162-6d03-41ef-a36f-dd7ec238aeab",
+    "existe": 1,
+    "codigo": 148,
+    "id": "49f42162-6d03-41ef-a36f-dd7ec238aeab",
+    "list": [],
+    "edit": true
+  }
+]

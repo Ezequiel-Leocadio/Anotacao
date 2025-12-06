@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "name": "Lembretes",
+    "slug": "Lembretes",
+    "version": "1.0.0",
+    "orientation": "default",
+    "icon": "./assets/notas3.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "scheme": "bigti",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.ezequielleocadio.notaszekexpo"
+    },
+    "android": {
+      "permissions": [
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION"
+      ],
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/notas3.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.ezequielleocadio.notaszekexpo"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-asset",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "custom photos permission",
+          "cameraPermission": "Allow $(PRODUCT_NAME) to open the camera",
+          "microphonePermission": false
+        }
+      ],
+      ["expo-notifications"],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "usesCleartextTraffic": true,
+            "version": "50.0"
+          }
+        }
+      ],
+      "react-native-edge-to-edge"
+    ]
+  }
+}

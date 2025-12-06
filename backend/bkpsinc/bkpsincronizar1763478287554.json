@@ -1,0 +1,26 @@
+[
+  {
+    "id": "b099c433-6866-468a-b667-426f531915b7",
+    "tipo": "pasta",
+    "icon": "folder",
+    "title": "1 MASSA BÁSICA E SABORES",
+    "id_nivel": "9",
+    "list": [],
+    "edit": true,
+    "uuid": "b099c433-6866-468a-b667-426f531915b7",
+    "existe": false
+  },
+  {
+    "id": "0b69a5b9-619a-44d1-8a2f-b6e1181b7d47",
+    "tipo": "receita",
+    "icon": "fastfood",
+    "title": "1 - MASSA BÁSICA",
+    "id_nivel": "b099c433-6866-468a-b667-426f531915b7",
+    "list": [],
+    "edit": true,
+    "uuid": "0b69a5b9-619a-44d1-8a2f-b6e1181b7d47",
+    "existe": false,
+    "image": null,
+    "anotacao": "MASSA BÁSICA\n\n4 ovos\n1 Pitada de sal \n250 g de açúcar (equivalente a 1/2 de xícara)\n200 ml de óleo (1 xícara)\n200 ml de leite (1 xícara)\n300 g de farinha de trigo (2 xícara cheia)\n1 colher de sopa cheia de fermento em pó "
+  }
+]

@@ -23,6 +23,9 @@ class Listas {
   @Column()
   marcado: boolean;
 
+  @Column()
+  secao: number;
+
   @CreateDateColumn()
   createdAt: Date;
 

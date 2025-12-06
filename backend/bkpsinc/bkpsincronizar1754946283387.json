@@ -1,0 +1,381 @@
+[
+  {
+    "title": "Compras kitnet",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+    "existe": 1,
+    "codigo": 150,
+    "id": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+    "list": [
+      {
+        "id": 376,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 25,
+        "descricao": "2 Galfo ",
+        "createdAt": "2025-07-18T15:44:08.000Z",
+        "updatedAt": "2025-07-22T19:57:06.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 286,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 6,
+        "descricao": "Açúcar ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 380,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 29,
+        "descricao": "Alface ",
+        "createdAt": "2025-07-25T15:33:49.000Z",
+        "updatedAt": "2025-08-11T13:52:32.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 212,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 6,
+        "descricao": "Alicate cutícula ",
+        "createdAt": "2025-02-05T17:54:32.000Z",
+        "updatedAt": "2025-04-16T15:24:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 374,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 23,
+        "descricao": "Banana",
+        "createdAt": "2025-07-17T14:51:59.000Z",
+        "updatedAt": "2025-07-22T19:57:06.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 378,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 27,
+        "descricao": "Banana ",
+        "createdAt": "2025-07-25T15:33:49.000Z",
+        "updatedAt": "2025-07-29T19:58:41.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 289,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 9,
+        "descricao": "Buxa ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 379,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 28,
+        "descricao": "Carne ",
+        "createdAt": "2025-07-25T15:33:49.000Z",
+        "updatedAt": "2025-08-11T13:52:32.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 369,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 20,
+        "descricao": "Carne ",
+        "createdAt": "2025-07-08T21:30:28.000Z",
+        "updatedAt": "2025-07-17T14:51:59.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 288,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 8,
+        "descricao": "Cordinha ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 364,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 15,
+        "descricao": "Detergente ",
+        "createdAt": "2025-06-28T15:51:11.000Z",
+        "updatedAt": "2025-07-02T13:41:43.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 377,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 26,
+        "descricao": "Detergente ",
+        "createdAt": "2025-07-25T15:33:49.000Z",
+        "updatedAt": "2025-07-29T19:58:41.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 284,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 4,
+        "descricao": "Detergente ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-17T14:46:53.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 381,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 30,
+        "descricao": "Feijao ",
+        "createdAt": "2025-07-25T15:33:49.000Z",
+        "updatedAt": "2025-07-29T19:58:41.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 290,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 10,
+        "descricao": "Leite",
+        "createdAt": "2025-04-16T18:18:52.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 371,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 20,
+        "descricao": "Óleo ",
+        "createdAt": "2025-07-17T14:51:59.000Z",
+        "updatedAt": "2025-07-22T19:57:06.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 366,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 17,
+        "descricao": "Óleo ",
+        "createdAt": "2025-07-08T21:29:43.000Z",
+        "updatedAt": "2025-07-09T19:14:50.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 237,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 11,
+        "descricao": "Ovos ",
+        "createdAt": "2025-03-06T12:43:37.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 373,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 22,
+        "descricao": "Ovos ",
+        "createdAt": "2025-07-17T14:51:59.000Z",
+        "updatedAt": "2025-07-22T19:57:06.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 370,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 21,
+        "descricao": "Papel alumínio ",
+        "createdAt": "2025-07-08T21:30:28.000Z",
+        "updatedAt": "2025-07-17T14:51:59.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 372,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 21,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-07-17T14:51:59.000Z",
+        "updatedAt": "2025-07-22T19:57:06.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 346,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 12,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-14T15:38:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 209,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 3,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-02-04T17:58:50.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 291,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 11,
+        "descricao": "Peneira ",
+        "createdAt": "2025-04-17T14:46:53.000Z",
+        "updatedAt": "2025-04-17T19:12:08.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 375,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 24,
+        "descricao": "Pratos ",
+        "createdAt": "2025-07-18T15:44:08.000Z",
+        "updatedAt": "2025-07-22T19:57:06.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 285,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 5,
+        "descricao": "Ralo ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 348,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 14,
+        "descricao": "Sabão barra ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-28T15:51:11.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 365,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 16,
+        "descricao": "Sabonete ",
+        "createdAt": "2025-06-28T15:51:11.000Z",
+        "updatedAt": "2025-07-02T13:41:43.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 347,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 13,
+        "descricao": "Shampoo hedem sholdem ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-14T15:38:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 287,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 7,
+        "descricao": "Vasilha grande ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 382,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 31,
+        "descricao": "Papel higiênico ",
+        "marcado": false
+      }
+    ],
+    "edit": true
+  },
+  {
+    "title": "Contas",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "1b330d05-a2df-4ba3-8687-dad2518edbe7",
+    "existe": 1,
+    "codigo": 91,
+    "id": "91",
+    "list": [
+      {
+        "id": 100,
+        "id_nota": "91",
+        "posicao": 3,
+        "descricao": "Aluguel kit net",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-04-29T21:00:19.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 103,
+        "id_nota": "91",
+        "posicao": 6,
+        "descricao": "Cartão nubank",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-08-06T18:21:20.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 104,
+        "id_nota": "91",
+        "posicao": 7,
+        "descricao": "Cartão Santander ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-08-06T18:21:20.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 105,
+        "id_nota": "91",
+        "posicao": 8,
+        "descricao": "Dinheiro mãe ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-08-06T18:28:42.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 98,
+        "id_nota": "91",
+        "posicao": 1,
+        "descricao": "Energia kitnet ",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-07-29T19:58:54.000Z",
+        "marcado": 0
+      },
+      {
+        "id": 99,
+        "id_nota": "91",
+        "posicao": 2,
+        "descricao": "Energia sitio",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-07-29T19:58:54.000Z",
+        "marcado": true
+      },
+      {
+        "id": 102,
+        "id_nota": "91",
+        "posicao": 5,
+        "descricao": "Internet",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-08-06T18:21:20.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 101,
+        "id_nota": "91",
+        "posicao": 4,
+        "descricao": "Netflix",
+        "createdAt": "2024-12-06T17:45:41.000Z",
+        "updatedAt": "2025-08-06T18:21:20.000Z",
+        "marcado": 1
+      }
+    ],
+    "edit": true
+  }
+]

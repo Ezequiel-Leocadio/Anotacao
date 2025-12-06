@@ -5,7 +5,7 @@ dotevnt.config({
   //   path: ".env.dev",
 });
 
-console.log(process.env.NODE_ENV);
+console.log(process.env.TYPEORM_MIGRATION_DIR);
 
 module.exports = [
   {

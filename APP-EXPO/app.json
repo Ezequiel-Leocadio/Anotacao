@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/notas3.png",
     "userInterfaceStyle": "light",
+    "entryPoint": "./src/main.jsx",
     "plugins": [
       [
         "expo-image-picker",
@@ -15,15 +16,13 @@
           "microphonePermission": false
         }
       ],
-      [
-        "expo-notifications"
-      ],
+      ["expo-notifications"],
       [
         "expo-build-properties",
         {
           "android": {
             "usesCleartextTraffic": true,
-            "version": "50.0"
+            "version": "51.0"
           }
         }
       ]

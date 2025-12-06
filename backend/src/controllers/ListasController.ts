@@ -3,7 +3,7 @@ import { ListaService } from "../services/ListaService";
 
 class ListasController {
   async inserir(req: Request, res: Response) {
-    const { descricao, id_nota, posicao, marcado, id } = req.body;
+    const { descricao, id_nota, posicao, marcado, id, secao } = req.body;
 
     const service = new ListaService();
 
@@ -13,6 +13,7 @@ class ListasController {
       posicao,
       marcado,
       id,
+      secao,
     });
 
     return res.json({
@@ -22,7 +23,7 @@ class ListasController {
     });
   }
   async editar(req: Request, res: Response) {
-    const { id, descricao, id_nota, posicao, marcado } = req.body;
+    const { id, descricao, id_nota, posicao, marcado, secao } = req.body;
 
     const service = new ListaService();
 
@@ -32,6 +33,7 @@ class ListasController {
       posicao,
       id,
       marcado,
+      secao,
     });
 
     return res.json({
@@ -67,6 +69,13 @@ class ListasController {
       message: "Lista",
       data: find,
     });
+  }
+
+  async secao() {
+    const service = new ListaService();
+
+    const list = await service.secao();
+    return list;
   }
 }
 

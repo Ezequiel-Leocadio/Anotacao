@@ -1,6 +1,7 @@
+import "@expo/metro-runtime"; // Necessary for Fast Refresh on Web
+
 import { registerRootComponent } from 'expo';
 import Index from "./index";
-import { View,Text } from 'react-native';
 
 
 
@@ -11,5 +12,7 @@ function App() {
 }
 
 registerRootComponent(App); 
+
+
 
 

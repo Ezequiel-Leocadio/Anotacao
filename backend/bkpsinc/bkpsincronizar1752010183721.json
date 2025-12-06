@@ -1,0 +1,182 @@
+[
+  {
+    "title": "Compras kitnet",
+    "id_nivel": "2",
+    "anotacao": null,
+    "tipo": "list",
+    "icon": "list",
+    "image": null,
+    "uuid": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+    "existe": 1,
+    "codigo": 150,
+    "id": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+    "list": [
+      {
+        "id": 286,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 6,
+        "descricao": "Açúcar ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 212,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 6,
+        "descricao": "Alicate cutícula ",
+        "createdAt": "2025-02-05T17:54:32.000Z",
+        "updatedAt": "2025-04-16T15:24:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 289,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 9,
+        "descricao": "Buxa ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 288,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 8,
+        "descricao": "Cordinha ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 284,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 4,
+        "descricao": "Detergente ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-17T14:46:53.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 364,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 15,
+        "descricao": "Detergente ",
+        "createdAt": "2025-06-28T15:51:11.000Z",
+        "updatedAt": "2025-07-02T13:41:43.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 290,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 10,
+        "descricao": "Leite",
+        "createdAt": "2025-04-16T18:18:52.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 237,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 11,
+        "descricao": "Ovos ",
+        "createdAt": "2025-03-06T12:43:37.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 346,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 12,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-14T15:38:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 209,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 3,
+        "descricao": "Papel higiênico ",
+        "createdAt": "2025-02-04T17:58:50.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 291,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 11,
+        "descricao": "Peneira ",
+        "createdAt": "2025-04-17T14:46:53.000Z",
+        "updatedAt": "2025-04-17T19:12:08.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 285,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 5,
+        "descricao": "Ralo ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 348,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 14,
+        "descricao": "Sabão barra ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-28T15:51:11.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 365,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 16,
+        "descricao": "Sabonete ",
+        "createdAt": "2025-06-28T15:51:11.000Z",
+        "updatedAt": "2025-07-02T13:41:43.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 347,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 13,
+        "descricao": "Shampoo hedem sholdem ",
+        "createdAt": "2025-06-13T22:10:21.000Z",
+        "updatedAt": "2025-06-14T15:38:09.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 287,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 7,
+        "descricao": "Vasilha grande ",
+        "createdAt": "2025-04-16T15:24:09.000Z",
+        "updatedAt": "2025-04-16T18:18:52.000Z",
+        "marcado": 1
+      },
+      {
+        "id": 366,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 17,
+        "descricao": "Óleo ",
+        "marcado": false
+      },
+      {
+        "id": 367,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 18,
+        "descricao": "Feijao carioca ",
+        "marcado": false
+      },
+      {
+        "id": 368,
+        "id_nota": "51b43b64-9d80-44ed-a11c-665fecd6fd4c",
+        "posicao": 19,
+        "descricao": "Soja em grãos ",
+        "marcado": false
+      }
+    ],
+    "edit": true
+  }
+]

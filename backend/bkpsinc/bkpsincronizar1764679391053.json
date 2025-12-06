@@ -1,0 +1,26 @@
+[
+  {
+    "id": "c37cffe3-2c95-4581-b2f6-73058dffc542",
+    "tipo": "pasta",
+    "icon": "folder",
+    "title": "Acesso",
+    "id_nivel": 0,
+    "list": [],
+    "edit": true,
+    "uuid": "c37cffe3-2c95-4581-b2f6-73058dffc542",
+    "existe": false
+  },
+  {
+    "id": "e4f5fec2-31ae-41fc-a258-8a8319305cdc",
+    "tipo": "nota",
+    "icon": "edit",
+    "title": "NewG",
+    "id_nivel": "c37cffe3-2c95-4581-b2f6-73058dffc542",
+    "list": [],
+    "edit": true,
+    "uuid": "e4f5fec2-31ae-41fc-a258-8a8319305cdc",
+    "existe": false,
+    "image": null,
+    "anotacao": "Y7@4b1320\n\nnewG\nY7@4b0877"
+  }
+]

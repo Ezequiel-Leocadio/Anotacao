@@ -16,7 +16,10 @@ import Load from "../../components/load";
 import FormInput from "../../components/Input";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as FileSystem from "expo-file-system";
+
+import { File, Directory, Paths } from "expo-file-system";
+import * as FileSystem from "expo-file-system/legacy";
+
 import * as Sharing from "expo-sharing";
 import * as DocumentPicker from "expo-document-picker";
 
@@ -38,9 +41,22 @@ function Sincronizar({ navigation, route }) {
       const jsonData = Object.fromEntries(items);
 
       // Caminho do arquivo para salvar
-      const fileUri = FileSystem.documentDirectory + "dados_app_notas.json";
+
+      // const fileUri = FileSystem.documentDirectory + "dados_app_notas.json";
+      // const destination = new Directory(Paths.cache, "dados_app_notas.json");
 
       // Salva o JSON no dispositivo
+      // await File.writeAsStringAsync(
+      //   destination,
+      //   JSON.stringify(jsonData, null, 2)
+      // );
+      const fileUri = `${FileSystem.documentDirectory}dados_app_notas.json`;
+
+      // const file = new File(Paths.document, "dados_app_notas.json");
+      // file.create();
+      // await file.write(JSON.stringify(jsonData, null, 2), {
+      //   encoding: "utf8",
+      // });
       await FileSystem.writeAsStringAsync(
         fileUri,
         JSON.stringify(jsonData, null, 2)
@@ -58,7 +74,7 @@ function Sincronizar({ navigation, route }) {
   function base64DataUriToJson(dataUri: string): any {
     // Remove o prefixo 'data:application/json;base64,'
     const base64String = dataUri.split(",")[1];
-
+    // console.log(dataUri);
     // Decodifica de Base64 para string
     // const jsonString = atob(base64String);
 
@@ -90,10 +106,11 @@ function Sincronizar({ navigation, route }) {
 
       // Caminho do arquivo selecionado
       const fileUri = result.assets[0].uri;
-
+      const fileBase64 = result.assets[0].base64;
+      // console.log(result);
       if (Platform.OS === "web") {
         for (const [key, value] of Object.entries(
-          base64DataUriToJson(fileUri)
+          base64DataUriToJson(fileBase64)
         )) {
           await AsyncStorage.setItem(key, value);
           // await AsyncStorage.setItem(key, JSON.stringify(value));
@@ -136,18 +153,24 @@ function Sincronizar({ navigation, route }) {
     setLoading(true);
     const dateGet: any = await getStoreData({ tipo: "date" });
     const itensGet: any = await getData({ tipo: "itens" });
+    const sementesGet: any = await getStoreData({ tipo: "sementes" });
 
     const res = await requestApi({
       route: "sincronizarnew",
       method: "post",
-      data: { itens, date: dateGet || null, itensGet: itensGet.length },
+      data: {
+        itens,
+        date: dateGet || null,
+        itensGet: itensGet.length,
+        sementes: sementesGet,
+      },
     });
 
     if (res.success) {
       const itensf = itensGet;
 
       for await (const i of res.data) {
-        const index = itensf.findIndex((f) => f.uuid === i.uuid);
+        const index = itensf.findIndex((f: any) => f.uuid === i.uuid);
         if (index >= 0) {
           itensf[index] = i;
         } else {
@@ -157,7 +180,14 @@ function Sincronizar({ navigation, route }) {
 
       await storeData({ value: JSON.stringify(res.data), tipo: "itens" });
       await storeData({ value: JSON.stringify(res.date), tipo: "date" });
-
+      await storeData({
+        value: JSON.stringify(res.sementes),
+        tipo: "sementes",
+      });
+      await storeData({
+        value: JSON.stringify(res.secoes),
+        tipo: "secoes",
+      });
       navigation.navigate("Notas.");
 
       setItens([]);
@@ -174,11 +204,17 @@ function Sincronizar({ navigation, route }) {
         setItens(i);
         const dateGet: any = await getStoreData({ tipo: "date" });
         const itensGet: any = await getData({ tipo: "itens" });
+        const sementesGet: any = await getStoreData({ tipo: "sementes" });
 
         const res = await requestApi({
           route: "sincronizarnew",
           method: "post",
-          data: { itens: i, date: dateGet || null, itensGet: itensGet.length },
+          data: {
+            itens: i,
+            date: dateGet || null,
+            itensGet: itensGet.length,
+            sementes: sementesGet,
+          },
         });
         // console.log(res);
         if (res.success) {
@@ -189,7 +225,7 @@ function Sincronizar({ navigation, route }) {
           const itensf = itensGet;
 
           for await (const i of res.data) {
-            const index = itensf.findIndex((f) => f.uuid === i.uuid);
+            const index = itensf.findIndex((f: any) => f.uuid === i.uuid);
 
             if (index >= 0) {
               itensf[index] = i;
@@ -199,6 +235,14 @@ function Sincronizar({ navigation, route }) {
           }
           await storeData({ value: JSON.stringify(res.data), tipo: "itens" });
           await storeData({ value: JSON.stringify(res.date), tipo: "date" });
+          await storeData({
+            value: JSON.stringify(res.sementes),
+            tipo: "sementes",
+          });
+          await storeData({
+            value: JSON.stringify(res.secoes),
+            tipo: "secoes",
+          });
 
           setItens([]);
           navigation.navigate("Notas.");
@@ -228,7 +272,7 @@ function Sincronizar({ navigation, route }) {
           placeholder="url"
           returnKeyType="next"
           value={url}
-          onChangeText={(e) => {
+          onChangeText={(e: any) => {
             setUrl(e);
           }}
           label="URL"

@@ -30,7 +30,7 @@ export const ModalView = styled.View`
   width: 95%;
   padding: 0 10px;
 
-  height: 350px;
+  height: 430px;
   background: #615c5c;
   border-radius: 10px;
 
@@ -48,6 +48,17 @@ export const TitleModal = styled.Text`
   text-align: center;
   font-size: 25;
   color: #fff;
+`;
+
+export const TitleSecao = styled.Text`
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  margin-top: 5px;
+
+  border-bottom-width: 0.8px;
+  border-bottom-style: solid;
+  border-bottom-color: #fff;
 `;
 
 export const TextInput: any = styled.TextInput`
